@@ -32,10 +32,11 @@ public abstract class Agent {
                 childCoordinate = environment.findFreeSpace();
             }
             if (childCoordinate != null) {
-                this.gestation = 0;
                 this.addChild(childCoordinate);
             }
-        } else {
+            this.gestation = 0;
+        }
+        else {
             gestation++;
         }
     }
