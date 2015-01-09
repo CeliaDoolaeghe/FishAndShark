@@ -1,7 +1,6 @@
 package iagl.idl.fishandshark.view;
 
 import iagl.idl.fishandshark.mas.MAS;
-import iagl.idl.fishandshark.mas.agent.Agent;
 import iagl.idl.fishandshark.mas.environment.Environment;
 
 import javax.swing.*;
@@ -10,7 +9,9 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * @author Jérémy Bossut, Jonathan Geoffroy
+ * Display MAS status.
+ *
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class StatusPanel extends JPanel implements Observer {
     private MAS mas;
@@ -28,11 +29,11 @@ public class StatusPanel extends JPanel implements Observer {
 
         // Create Labels
         chrononsLabel = new JLabel(String.valueOf(mas.getScheduling()));
-        fishesLabel = new JLabel(String.valueOf(environment.getFishes()));
+        fishesLabel = new JLabel(String.valueOf(environment.getFish()));
         sharksLabel = new JLabel(String.valueOf(environment.getSharks()));
 
         // Add labels to Panel
-        GridLayout layout = new GridLayout(0,2);
+        GridLayout layout = new GridLayout(0, 2);
         setLayout(layout);
         add(new JLabel("Chronons:"));
         add(chrononsLabel);
@@ -46,7 +47,7 @@ public class StatusPanel extends JPanel implements Observer {
     public void update(Observable observable, Object o) {
         Environment environment = mas.getEnvironment();
         chrononsLabel.setText(String.valueOf(mas.getScheduling()));
-        fishesLabel.setText(String.valueOf(environment.getFishes()));
+        fishesLabel.setText(String.valueOf(environment.getFish()));
         sharksLabel.setText(String.valueOf(environment.getSharks()));
     }
 }

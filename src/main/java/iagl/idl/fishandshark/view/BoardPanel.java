@@ -1,6 +1,5 @@
 package iagl.idl.fishandshark.view;
 
-import iagl.idl.fishandshark.mas.MAS;
 import iagl.idl.fishandshark.mas.agent.Agent;
 import iagl.idl.fishandshark.mas.environment.Environment;
 
@@ -10,10 +9,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * @author Jérémy Bossut, Jonathan Geoffroy
+ * Graphical view of an Environment
+ *
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class BoardPanel extends JPanel implements Observer {
     private Environment environment;
+
     public BoardPanel(Environment environment) {
         super();
         this.environment = environment;
@@ -25,14 +27,13 @@ public class BoardPanel extends JPanel implements Observer {
         super.paintComponent(g);
         Agent[][] board = environment.getBoard();
         int squareHeight = getHeight() / board.length;
-        int squareWidth =  getWidth() / board[0].length;
+        int squareWidth = getWidth() / board[0].length;
 
-        for(int y = 0; y < board.length; y++) {
-            for(int x = 0; x < board[y].length; x++) {
-                if(board[y][x] == null) {
+        for (int y = 0; y < board.length; y++) {
+            for (int x = 0; x < board[y].length; x++) {
+                if (board[y][x] == null) {
                     g.setColor(Color.BLUE);
-                }
-                else {
+                } else {
                     g.setColor(board[y][x].getColor());
                 }
                 g.fillOval(x * squareWidth, y * squareHeight, squareWidth, squareHeight);

@@ -5,19 +5,15 @@ import iagl.idl.fishandshark.mas.agent.Fish;
 import iagl.idl.fishandshark.mas.agent.Shark;
 import iagl.idl.fishandshark.mas.environment.Environment;
 import iagl.idl.fishandshark.view.FishAndSharkFrame;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-import sun.security.provider.SHA;
 
 import javax.swing.*;
 
 /**
- * Hello world!
- *
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class App 
-{
+public class App {
     public static void main(String[] args) throws InterruptedException {
-        if(args.length < 7) {
+        if (args.length < 7) {
             usage();
         }
         int size = Integer.parseInt(args[0]);
