@@ -53,6 +53,9 @@ public class MAS {
             scheduling++;
             environment.clearDead();
             environment.notifyObservers();
+            if(environment.somebodyWon()) {
+                setTerminated(true);
+            }
         }
     }
 

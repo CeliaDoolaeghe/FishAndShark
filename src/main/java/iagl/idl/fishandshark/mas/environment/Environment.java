@@ -330,4 +330,8 @@ public class Environment extends Observable {
         setChanged();
         super.notifyObservers();
     }
+
+    public boolean somebodyWon() {
+        return fish == size * size || sharks == size * size || fish + sharks == 0;
+    }
 }
