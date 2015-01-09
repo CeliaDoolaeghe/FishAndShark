@@ -4,8 +4,8 @@ set   autoscale
 set xtic auto                          # set xtics automatically
 set ytic auto                          # set ytics automatically
 set title "Fish And Sharks Simulation"
-set xlabel "Time (chronons)"
-set ylabel "Number of Agents"
+set xlabel "Fish"
+set ylabel "Sharks"
 set autoscale x
 set autoscale y
 set key off
