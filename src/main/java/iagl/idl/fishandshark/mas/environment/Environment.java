@@ -7,10 +7,6 @@ import iagl.idl.fishandshark.mas.agent.Shark;
 import java.util.*;
 
 public class Environment extends  Observable {
-    public final static int BOARD_SIZE = 40;
-    private final static int NB_SHARKS_INIT = 50;
-    private final static int NB_FISHES_INIT = 250;
-
 	private int size;
     private Agent[][] board;
     private Map<Agent, Coordinate> agents;
@@ -19,20 +15,20 @@ public class Environment extends  Observable {
     private int sharks;
     private Set theDead;
 
-    public Environment() {
-        this.size = BOARD_SIZE;
+    public Environment(int size, int initFish, int initSharks) {
+        this.size = size;
         agents = new HashMap<Agent, Coordinate>();
         agentsList = new LinkedList<Agent>();
         theDead = new HashSet();
         board = new Agent[size][size];
-        init();
+        init(initFish, initSharks);
     }
 
-    private void init() {
+    private void init(int initFish, int initSharks) {
         // Add fishes
         int nbFishes = 0;
         Coordinate coordinate;
-        while(nbFishes < NB_FISHES_INIT) {
+        while(nbFishes < initFish) {
             int x = (int) (Math.random() * size);
             int y = (int) (Math.random() * size);
             if(board[y][x] == null) {
@@ -44,7 +40,7 @@ public class Environment extends  Observable {
 
         // add sharks
         int nbSharks = 0;
-        while(nbSharks < NB_SHARKS_INIT) {
+        while(nbSharks < initSharks) {
             int x = (int) (Math.random() * size);
             int y = (int) (Math.random() * size);
             if(board[y][x] == null) {

@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Fish extends Agent {
 
-	private final static int GESTATION_DURATION = 2;
+	private static int GESTATION_DURATION = 2;
 	
 	public Fish(Environment environment) {
 		super(environment);
@@ -40,5 +40,9 @@ public class Fish extends Agent {
     @Override
     public Color getColor() {
         return Color.YELLOW;
+    }
+
+    public static void setGestationDuration(int gestationDuration) {
+        GESTATION_DURATION = gestationDuration;
     }
 }

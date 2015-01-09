@@ -2,14 +2,15 @@ package iagl.idl.fishandshark.mas.agent;
 
 import iagl.idl.fishandshark.mas.environment.Coordinate;
 import iagl.idl.fishandshark.mas.environment.Environment;
+import sun.security.provider.SHA;
 
 import java.awt.*;
 import java.util.Map;
 
 public class Shark extends Agent {
 
-	private final static int STARVATION_DURATION = 3;
-	private final static int GESTATION_DURATION = 8;
+	private static int STARVATION_DURATION = 3;
+	private static int GESTATION_DURATION = 8;
 	
 	private int starvation;
 	
@@ -17,7 +18,11 @@ public class Shark extends Agent {
 		super(environment);
 	}
 
-	@Override
+    public static int getGestationDuration() {
+        return GESTATION_DURATION;
+    }
+
+    @Override
 	public void doIt() {
 		if(starvation >= STARVATION_DURATION) {
             environment.remove(this);
@@ -69,4 +74,13 @@ public class Shark extends Agent {
     public Color getColor() {
         return Color.RED;
     }
+
+    public static void setGestationDuration(int gestationDuration) {
+        Shark.GESTATION_DURATION = gestationDuration;
+    }
+
+    public static void setStarvationDuration(int starvationDuration) {
+        Shark.STARVATION_DURATION = starvationDuration;
+    }
+
 }
