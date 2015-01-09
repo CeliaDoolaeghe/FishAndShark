@@ -78,25 +78,17 @@ public class Environment extends Observable {
         int nbFish = 0;
         Coordinate coordinate;
         while (nbFish < initFish) {
-            int x = (int) (Math.random() * size);
-            int y = (int) (Math.random() * size);
-            if (board[y][x] == null) {
-                coordinate = new Coordinate(x, y);
-                addFish(coordinate);
-                nbFish++;
-            }
+            coordinate = findFreeSpace();
+            addFish(coordinate);
+            nbFish++;
         }
 
         // add sharks
         int nbSharks = 0;
         while (nbSharks < initSharks) {
-            int x = (int) (Math.random() * size);
-            int y = (int) (Math.random() * size);
-            if (board[y][x] == null) {
-                coordinate = new Coordinate(x, y);
-                addShark(coordinate);
-                nbSharks++;
-            }
+            coordinate = findFreeSpace();
+            addShark(coordinate);
+            nbSharks++;
         }
     }
 
@@ -127,16 +119,20 @@ public class Environment extends Observable {
      * @return a free square if the sea isn't full, or null otherwise
      */
     public Coordinate findFreeSpace() {
-        Coordinate currentCoordinate;
-        for (int y = 0; y < size; y++) {
-            for (int x = 0; x < size; x++) {
-                currentCoordinate = new Coordinate(x, y);
-                if (isFree(currentCoordinate)) {
-                    return currentCoordinate;
-                }
+        // If there is an agent for each square: return null
+        if(fish + sharks == size * size) {
+            return null;
+        }
+        // Find a free square by randomly checking squares
+        Coordinate coordinate = null;
+        while(coordinate == null) {
+            int x = (int) (Math.random() * size);
+            int y = (int) (Math.random() * size);
+            if (board[y][x] == null) {
+                coordinate = new Coordinate(x, y);
             }
         }
-        return null;
+        return coordinate;
     }
 
     /**
