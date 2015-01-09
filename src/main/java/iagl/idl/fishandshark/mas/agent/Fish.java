@@ -1,14 +1,16 @@
 package iagl.idl.fishandshark.mas.agent;
 
-import iagl.idl.fishandshark.environment.Coordinate;
-import iagl.idl.fishandshark.environment.Environment;
+import iagl.idl.fishandshark.mas.environment.Coordinate;
+import iagl.idl.fishandshark.mas.environment.Environment;
+
+import java.awt.*;
 
 public class Fish extends Agent {
 
 	private final static int GESTATION_DURATION = 2;
 	
-	public Fish(Coordinate coordinate, Environment environment) {
-		super(coordinate, environment);
+	public Fish(Environment environment) {
+		super(environment);
 	}
 	
 	@Override
@@ -24,4 +26,19 @@ public class Fish extends Agent {
 	public boolean canGiveBirth() {
 		return gestation == GESTATION_DURATION;
 	}
+
+    @Override
+    public boolean isEatable() {
+        return true;
+    }
+
+    @Override
+    public void removeFromEnvironment() {
+        environment.remove(this);
+    }
+
+    @Override
+    public Color getColor() {
+        return Color.YELLOW;
+    }
 }

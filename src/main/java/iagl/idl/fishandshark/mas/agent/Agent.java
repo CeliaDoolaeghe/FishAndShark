@@ -1,17 +1,16 @@
 package iagl.idl.fishandshark.mas.agent;
 
-import iagl.idl.fishandshark.environment.Coordinate;
-import iagl.idl.fishandshark.environment.Environment;
+import iagl.idl.fishandshark.mas.environment.Coordinate;
+import iagl.idl.fishandshark.mas.environment.Environment;
+
+import java.awt.*;
 
 public abstract class Agent {
-
-	protected Coordinate coordinate;
 	protected Environment environment;
 	protected int gestation;
 	
-	public Agent(Coordinate coordinate, Environment environment) {
+	public Agent(Environment environment) {
 		super();
-		this.coordinate = coordinate;
 		this.environment = environment;
 	}
 	
@@ -19,7 +18,7 @@ public abstract class Agent {
 	
 	protected void tryToGiveBirth() {
 		if (this.canGiveBirth()) {
-			Coordinate childCoordinate = environment.findFreeSpace(this.coordinate);
+			Coordinate childCoordinate = environment.findFreeSpace(this);
 			if(childCoordinate == null) {
 				childCoordinate = environment.findFreeSpace();
 			}
@@ -28,6 +27,9 @@ public abstract class Agent {
 				this.addChild(childCoordinate);
 			}
 		}
+        else {
+            gestation++;
+        }
 	}
 	
 	protected abstract void addChild(Coordinate childCoordinate);
@@ -35,10 +37,15 @@ public abstract class Agent {
 	protected abstract boolean canGiveBirth();
 	
 	protected void tryToMove() {
-		Coordinate nextCoordinate = environment.findFreeSpace(coordinate);
+		Coordinate nextCoordinate = environment.findFreeSpace(this);
 		if(nextCoordinate != null) {
-			environment.move(coordinate, nextCoordinate);
-			coordinate = nextCoordinate;
+			environment.move(this, nextCoordinate);
 		}
 	}
+
+    public abstract boolean isEatable();
+
+    public abstract void removeFromEnvironment();
+
+    public abstract Color getColor();
 }
