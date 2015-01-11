@@ -5,7 +5,7 @@ Célia CACCIATORE,
 Jonathan GEOFFROY
 
 ------------------------------------
-Implementation de [Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor) dans le cadre du cours Intelligence Articifielle, Master 2 Informatique, spécialité IALG, Université Lille1.
+Implementation de [Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor) dans le cadre du cours Intelligence Articifielle, Master 2 Informatique, spécialité IAGL, Université Lille1.
 
 # Exécution #
 Afin d'exécuter facilement l'application, un script maven vous est fourni:
