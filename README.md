@@ -85,4 +85,4 @@ On trouve dans cette implémentation deux types d'*Agent*s: les poissons (*Fish*
 Le comportement d'un poisson est de tenter de se déplacer si possible, c'est-à-dire si au moins une case adjacente est libre. Le poisson essaye ensuite dans le même tour de donner vie à un autre poisson si cela lui est possible.
 
 ## Shark: Requin ##
-En premier, le requin vérifie qu'il n'est pas déjà mort de fin. Si tel est le cas, il se supprime de l'environnement. Dans le cas contraire, il tente d'abord de manger un poisson si celui-ci est sur une case adjacente. Il tente ensuite de faire naitre un nouveau requinde se déplacer, avant de se déplace si cela lui est possible, en suivant les mêmes règles que pour le poisson.
+En premier, le requin vérifie qu'il n'est pas déjà mort de faim. Si tel est le cas, il se supprime de l'environnement. Dans le cas contraire, il tente d'abord de manger un poisson si celui-ci est sur une case adjacente. Il tente ensuite de faire naitre un nouveau requinde se déplacer, avant de se déplace si cela lui est possible, en suivant les mêmes règles que pour le poisson.
