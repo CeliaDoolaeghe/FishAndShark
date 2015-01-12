@@ -52,6 +52,9 @@ Les courbes obtenues :
  * deux courbes sinusoïdales représentant les popuplations des poissons et requins au cours du temps. Quand le nombre de requins augmentent, le nombre de poissons diminuent et vice-versa.
  * une ellipse pleine quand on représente la population de poissons par rapport à celle des requins.
 
+ ![][doc/simulationTime.svg]  
+ ![][doc/fishAndSharks.svg]
+
 # Structure du Projet #
 
      ./src/main/java/
