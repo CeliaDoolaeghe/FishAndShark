@@ -13,7 +13,7 @@ Afin d'exécuter facilement l'application, un script maven est fourni:
     git clone https://github.com/CeliaDoolaeghe/FishAndShark.git
     cd FishAndShark
     mvn install
-    mvn exec:java -Dexec.args="arg1 arg2 ..."
+    mvn exec:java -Dexec.args="100 2000 900 2 6 4 50"
     gnuplot *.plot
   
 ## Arguments ##
