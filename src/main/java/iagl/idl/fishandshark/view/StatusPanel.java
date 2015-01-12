@@ -18,7 +18,7 @@ public class StatusPanel extends JPanel implements Observer {
 	private static final long serialVersionUID = 1L;
 	private MAS mas;
     private JLabel chrononsLabel;
-    private JLabel fishesLabel;
+    private JLabel fishLabel;
     private JLabel sharksLabel;
 
     public StatusPanel(MAS mas) {
@@ -31,7 +31,7 @@ public class StatusPanel extends JPanel implements Observer {
 
         // Create Labels
         chrononsLabel = new JLabel(String.valueOf(mas.getScheduling()));
-        fishesLabel = new JLabel(String.valueOf(environment.getFish()));
+        fishLabel = new JLabel(String.valueOf(environment.getFish()));
         sharksLabel = new JLabel(String.valueOf(environment.getSharks()));
 
         // Add labels to Panel
@@ -39,9 +39,14 @@ public class StatusPanel extends JPanel implements Observer {
         setLayout(layout);
         add(new JLabel("Chronons:"));
         add(chrononsLabel);
-        add(new JLabel("Fishes:"));
-        add(fishesLabel);
-        add(new JLabel("Sharks:"));
+        JLabel textFishLabel = new JLabel("Fish:");
+        textFishLabel.setForeground(Color.BLUE);
+        add(textFishLabel);
+        add(fishLabel);
+        JLabel textSharksLabel = new JLabel("Sharks:");
+        textSharksLabel.setForeground(Color.RED);
+        add(textSharksLabel);
+        textFishLabel.setForeground(Color.BLUE);
         add(sharksLabel);
     }
 
@@ -49,7 +54,7 @@ public class StatusPanel extends JPanel implements Observer {
     public void update(Observable observable, Object o) {
         Environment environment = mas.getEnvironment();
         chrononsLabel.setText(String.valueOf(mas.getScheduling()));
-        fishesLabel.setText(String.valueOf(environment.getFish()));
+        fishLabel.setText(String.valueOf(environment.getFish()));
         sharksLabel.setText(String.valueOf(environment.getSharks()));
     }
 }
