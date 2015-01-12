@@ -1,5 +1,5 @@
-set terminal pngcairo  transparent font "arial,10" fontscale 1.0 size 600, 400
-set output 'target/simulationTime.png'
+set terminal svg
+set output 'target/simulationTime.svg'
 set   autoscale
 set xtic auto                          # set xtics automatically
 set ytic auto                          # set ytics automatically
