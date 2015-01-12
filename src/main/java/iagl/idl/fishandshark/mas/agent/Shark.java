@@ -44,6 +44,7 @@ public class Shark extends Agent {
 
     @Override
     public void doIt() {
+        super.doIt();
         if (starvation >= STARVATION_DURATION) {
             environment.remove(this);
         } else {

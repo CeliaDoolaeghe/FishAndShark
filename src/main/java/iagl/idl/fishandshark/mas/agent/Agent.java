@@ -17,13 +17,16 @@ import java.awt.*;
 public abstract class Agent {
     protected Environment environment;
     protected int gestation;
+    private int age;
 
     public Agent(Environment environment) {
         super();
         this.environment = environment;
     }
 
-    public abstract void doIt();
+    public void doIt() {
+        age++;
+    }
 
     protected void tryToGiveBirth() {
         if (this.canGiveBirth()) {
@@ -54,4 +57,12 @@ public abstract class Agent {
     public abstract void removeFromEnvironment();
 
     public abstract Color getColor();
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
 }
