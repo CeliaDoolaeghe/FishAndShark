@@ -8,7 +8,7 @@ import java.awt.*;
 /**
  * Agent which represents a Fish
  * <p>
- * A Fish first try to move before giving birth to another Fish if its <code>gestation</code> as bigger than the <code>GESTATION_DURATION</code>
+ * First try to move before giving birth to another Fish if its <code>gestation</code> as bigger than the <code>GESTATION_DURATION</code>
  * <p/>
  * </p>
  *
@@ -24,6 +24,7 @@ public class Fish extends Agent {
 
     @Override
     public void doIt() {
+        super.doIt();
         this.tryToMove();
         this.tryToGiveBirth();
     }
