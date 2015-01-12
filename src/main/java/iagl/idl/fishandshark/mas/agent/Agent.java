@@ -28,9 +28,6 @@ public abstract class Agent {
     protected void tryToGiveBirth() {
         if (this.canGiveBirth()) {
             Coordinate childCoordinate = environment.findFreeSpace(this);
-            if (childCoordinate == null) {
-                childCoordinate = environment.findFreeSpace();
-            }
             if (childCoordinate != null) {
                 this.addChild(childCoordinate);
             }

@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * @author Jérémy Bossut, Jonathan Geoffroy
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class FishAndSharkFrame extends JFrame {
 

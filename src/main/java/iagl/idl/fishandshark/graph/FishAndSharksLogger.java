@@ -6,7 +6,7 @@ import iagl.idl.fishandshark.mas.environment.Environment;
 import java.io.FileNotFoundException;
 
 /**
- * @author Jérémy Bossut, Jonathan Geoffroy
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class FishAndSharksLogger extends CSVLogger {
 

@@ -9,7 +9,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * @author Jérémy Bossut, Jonathan Geoffroy
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class CSVLogger implements Observer {
 
