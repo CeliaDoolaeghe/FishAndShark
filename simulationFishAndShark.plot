@@ -17,4 +17,4 @@ h2 = 227/360.0
 # creating the palette by specifying H,S,V
 set palette model HSV functions (1-gray)*(h2-h1)+h1,1,0.68
 
-plot  "target/fishAndSharks.csv" using 1:2:2 w l lc palette
+plot  "target/simulationTime.csv" using 2:3:1 w dot lc palette
