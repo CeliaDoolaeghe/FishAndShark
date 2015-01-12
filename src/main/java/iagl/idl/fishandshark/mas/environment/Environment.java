@@ -49,7 +49,7 @@ public class Environment extends Observable {
     /**
      * Keep a reference to Agents who died
      */
-    private Set theDead;
+    private Set<Agent> theDead;
 
     /**
      * Create an Environment by adding some fish & sharks.
@@ -62,7 +62,7 @@ public class Environment extends Observable {
         this.size = size;
         agents = new HashMap<Agent, Coordinate>();
         agentsList = new LinkedList<Agent>();
-        theDead = new HashSet();
+        theDead = new HashSet<Agent>();
         board = new Agent[size][size];
         init(initFish, initSharks);
     }
