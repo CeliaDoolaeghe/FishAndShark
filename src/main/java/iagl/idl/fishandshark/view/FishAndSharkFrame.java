@@ -9,7 +9,9 @@ import java.awt.*;
  * @author Jérémy Bossut, Jonathan Geoffroy
  */
 public class FishAndSharkFrame extends JFrame {
-    private BoardPanel boardPanel;
+
+	private static final long serialVersionUID = 1L;
+	private BoardPanel boardPanel;
     private StatusPanel statusPanel;
 
     public FishAndSharkFrame(String title, MAS mas) throws HeadlessException {

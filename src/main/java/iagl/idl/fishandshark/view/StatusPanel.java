@@ -14,7 +14,9 @@ import java.util.Observer;
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class StatusPanel extends JPanel implements Observer {
-    private MAS mas;
+
+	private static final long serialVersionUID = 1L;
+	private MAS mas;
     private JLabel chrononsLabel;
     private JLabel fishesLabel;
     private JLabel sharksLabel;

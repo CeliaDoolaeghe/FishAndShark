@@ -14,7 +14,9 @@ import java.util.Observer;
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class BoardPanel extends JPanel implements Observer {
-    private Environment environment;
+
+	private static final long serialVersionUID = 1L;
+	private Environment environment;
 
     public BoardPanel(Environment environment) {
         super();
@@ -31,10 +33,10 @@ public class BoardPanel extends JPanel implements Observer {
 
         for (int y = 0; y < board.length; y++) {
             for (int x = 0; x < board[y].length; x++) {
-                if (board[y][x] == null) {
-                    g.setColor(Color.BLUE);
-                } else {
+                if (board[y][x] != null) {
                     g.setColor(board[y][x].getColor());
+                } else {
+                	g.setColor(Color.LIGHT_GRAY);
                 }
                 g.fillOval(x * squareWidth, y * squareHeight, squareWidth, squareHeight);
             }

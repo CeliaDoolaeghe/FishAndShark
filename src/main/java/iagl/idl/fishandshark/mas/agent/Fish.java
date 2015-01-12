@@ -50,7 +50,7 @@ public class Fish extends Agent {
 
     @Override
     public Color getColor() {
-        return Color.YELLOW;
+        return Color.BLUE;
     }
 
     public static void setGestationDuration(int gestationDuration) {
