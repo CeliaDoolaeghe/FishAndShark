@@ -47,7 +47,7 @@
 				<configuration>
 					<executable>java</executable>
 					<commandlineArgs></commandlineArgs>
-					<mainClass>iagl.idl.simulation.App</mainClass>
+					<mainClass>iagl.idl.simulation.FishAndSharkApp</mainClass>
 				</configuration>
 			</plugin>
 		</plugins>

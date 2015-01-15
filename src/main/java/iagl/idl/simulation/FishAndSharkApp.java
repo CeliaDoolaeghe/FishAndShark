@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class App {
+public class FishAndSharkApp {
     public static void main(String[] args) throws InterruptedException, FileNotFoundException {
         if (args.length < 7) {
             usage();

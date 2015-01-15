@@ -46,9 +46,9 @@ public class Environment<T extends Agent> extends Observable {
         theDead = new HashSet<>();
         board = new ArrayList<>();
         List<T> abscissa;
-        for(int y = 0; y < size; y++) {
+        for (int y = 0; y < size; y++) {
             abscissa = new ArrayList<>();
-            for(int x = 0; x < size; x++) {
+            for (int x = 0; x < size; x++) {
                 abscissa.add(null);
             }
             board.add(abscissa);
@@ -62,7 +62,7 @@ public class Environment<T extends Agent> extends Observable {
      */
     public void init(List<T> agents) {
         Coordinate coordinate;
-        for(T agent: agents) {
+        for (T agent : agents) {
             coordinate = findFreeSpace();
             addAgent(agent, coordinate);
         }
@@ -99,7 +99,7 @@ public class Environment<T extends Agent> extends Observable {
     public Coordinate findFreeSpace() {
         // If there is an agent for each square: return null
         int size = board.size();
-        if(agentsList.size() == size * size) {
+        if (agentsList.size() == size * size) {
             return null;
         }
 
@@ -109,7 +109,7 @@ public class Environment<T extends Agent> extends Observable {
             int x = (int) (Math.random() * size);
             int y = (int) (Math.random() * size);
             coordinate = new Coordinate(x, y);
-        } while(!isFree(coordinate));
+        } while (!isFree(coordinate));
 
         return coordinate;
     }
@@ -243,11 +243,7 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     private void setBoardSquare(Coordinate agentCoordinate, T agent) {
-        try {
-            board.get(agentCoordinate.getY()).set(agentCoordinate.getX(), agent);
-        } catch(NullPointerException e) {
-            e.printStackTrace();
-        }
+        board.get(agentCoordinate.getY()).set(agentCoordinate.getX(), agent);
     }
 
     /**

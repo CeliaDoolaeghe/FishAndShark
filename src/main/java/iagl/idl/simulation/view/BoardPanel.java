@@ -1,7 +1,6 @@
 package iagl.idl.simulation.view;
 
 import iagl.idl.simulation.mas.agent.Agent;
-import iagl.idl.simulation.mas.agent.fishandsharks.FishAndSharkAgent;
 import iagl.idl.simulation.mas.environment.Environment;
 
 import javax.swing.*;
