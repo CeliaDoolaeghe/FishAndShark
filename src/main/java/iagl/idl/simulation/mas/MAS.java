@@ -1,7 +1,7 @@
-package iagl.idl.fishandshark.mas;
+package iagl.idl.simulation.mas;
 
-import iagl.idl.fishandshark.mas.agent.Agent;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.agent.Agent;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import java.util.List;
 
@@ -11,7 +11,7 @@ import java.util.List;
  *
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class MAS {
+public class MAS<T extends Agent> {
     /**
      * The delay between two simulation turns (in ms)
      */
@@ -27,10 +27,10 @@ public class MAS {
     /**
      * The Environment of this Simulation
      */
-    private Environment environment;
+    private Environment<T> environment;
 
 
-    public MAS(Environment environment, int delay) {
+    public MAS(Environment<T> environment, int delay) {
         this.environment = environment;
         this.delay = delay;
     }
@@ -44,8 +44,8 @@ public class MAS {
     public void run() throws InterruptedException {
         while (!terminated) {
             Thread.sleep(delay);
-            List<Agent> agents = environment.getAllAgents();
-            for (Agent agent : agents) {
+            List<T> agents = environment.getAllAgents();
+            for (T agent : agents) {
                 if (!environment.isDead(agent)) {
                     agent.doIt();
                 }
@@ -53,9 +53,6 @@ public class MAS {
             scheduling++;
             environment.clearDead();
             environment.notifyObservers();
-            if(environment.somebodyWon()) {
-                setTerminated(true);
-            }
         }
     }
 
@@ -70,6 +67,4 @@ public class MAS {
     public Environment getEnvironment() {
         return environment;
     }
-
-
 }

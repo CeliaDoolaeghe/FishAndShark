@@ -1,6 +1,6 @@
-package iagl.idl.fishandshark.view;
+package iagl.idl.simulation.view;
 
-import iagl.idl.fishandshark.mas.MAS;
+import iagl.idl.simulation.mas.MAS;
 
 import javax.swing.*;
 import java.awt.*;

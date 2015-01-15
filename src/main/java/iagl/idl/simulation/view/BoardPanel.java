@@ -1,12 +1,13 @@
-package iagl.idl.fishandshark.view;
+package iagl.idl.simulation.view;
 
-import iagl.idl.fishandshark.mas.agent.Agent;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.agent.Agent;
+import iagl.idl.simulation.mas.agent.fishandsharks.FishAndSharkAgent;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
+import java.util.List;
 
 /**
  * Graphical view of an Environment
@@ -27,14 +28,18 @@ public class BoardPanel extends JPanel implements Observer {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Agent[][] board = environment.getBoard();
-        int squareHeight = getHeight() / board.length;
-        int squareWidth = getWidth() / board[0].length;
+        List<List<Agent>> board = environment.getBoard();
 
-        for (int y = 0; y < board.length; y++) {
-            for (int x = 0; x < board[y].length; x++) {
-                if (board[y][x] != null) {
-                    g.setColor(board[y][x].getColor());
+        int height = board.size();
+        int width = board.get(0).size();
+
+        int squareHeight = getHeight() / height;
+        int squareWidth = getWidth() / width;
+
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
+                if (board.get(y).get(x) != null) {
+                    g.setColor(board.get(y).get(x).getColor());
                 } else {
                 	g.setColor(Color.LIGHT_GRAY);
                 }

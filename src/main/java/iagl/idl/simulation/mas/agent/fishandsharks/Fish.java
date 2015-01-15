@@ -1,7 +1,7 @@
-package iagl.idl.fishandshark.mas.agent;
+package iagl.idl.simulation.mas.agent.fishandsharks;
 
-import iagl.idl.fishandshark.mas.environment.Coordinate;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.environment.Coordinate;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import java.awt.*;
 
@@ -14,11 +14,11 @@ import java.awt.*;
  *
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class Fish extends Agent {
+public class Fish extends FishAndSharkAgent {
 
     private static int GESTATION_DURATION = 2;
 
-    public Fish(Environment environment) {
+    public Fish(Environment<FishAndSharkAgent> environment) {
         super(environment);
     }
 
@@ -31,7 +31,8 @@ public class Fish extends Agent {
 
     @Override
     public void addChild(Coordinate childCoordinate) {
-        environment.addFish(childCoordinate);
+        Fish fish = new Fish(environment);
+        environment.addAgent(fish, childCoordinate);
     }
 
     @Override
@@ -46,7 +47,7 @@ public class Fish extends Agent {
 
     @Override
     public void removeFromEnvironment() {
-        environment.remove(this);
+        environment.removeAgent(this);
     }
 
     @Override

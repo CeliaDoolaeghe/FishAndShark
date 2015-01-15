@@ -1,7 +1,7 @@
-package iagl.idl.fishandshark.view;
+package iagl.idl.simulation.view;
 
-import iagl.idl.fishandshark.mas.MAS;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.MAS;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import javax.swing.*;
 import java.awt.*;
@@ -31,8 +31,8 @@ public class StatusPanel extends JPanel implements Observer {
 
         // Create Labels
         chrononsLabel = new JLabel(String.valueOf(mas.getScheduling()));
-        fishLabel = new JLabel(String.valueOf(environment.getFish()));
-        sharksLabel = new JLabel(String.valueOf(environment.getSharks()));
+        fishLabel = new JLabel(/*String.valueOf(environment.getFish())*/);
+        sharksLabel = new JLabel(/*String.valueOf(environment.getSharks())*/);
 
         // Add labels to Panel
         GridLayout layout = new GridLayout(0, 2);
@@ -54,7 +54,7 @@ public class StatusPanel extends JPanel implements Observer {
     public void update(Observable observable, Object o) {
         Environment environment = mas.getEnvironment();
         chrononsLabel.setText(String.valueOf(mas.getScheduling()));
-        fishLabel.setText(String.valueOf(environment.getFish()));
-        sharksLabel.setText(String.valueOf(environment.getSharks()));
+//        fishLabel.setText(String.valueOf(environment.getFish()));
+//        sharksLabel.setText(String.valueOf(environment.getSharks()));
     }
 }

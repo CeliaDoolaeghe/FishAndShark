@@ -1,7 +1,7 @@
-package iagl.idl.fishandshark.graph;
+package iagl.idl.simulation.graph;
 
-import iagl.idl.fishandshark.mas.MAS;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.MAS;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -28,7 +28,7 @@ public class CSVLogger implements Observer {
 
     protected void writeLine() {
         Environment environment = mas.getEnvironment();
-        writer.printf("%s %s %s%n", mas.getScheduling(), environment.getFish(), environment.getSharks());
+//        writer.printf("%s %s %s%n", mas.getScheduling(), environment.getFish(), environment.getSharks());
     }
 
     public void close() {

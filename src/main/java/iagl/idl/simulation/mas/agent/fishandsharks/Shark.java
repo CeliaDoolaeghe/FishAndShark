@@ -1,7 +1,7 @@
-package iagl.idl.fishandshark.mas.agent;
+package iagl.idl.simulation.mas.agent.fishandsharks;
 
-import iagl.idl.fishandshark.mas.environment.Coordinate;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.environment.Coordinate;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import java.awt.*;
 import java.util.Map;
@@ -17,7 +17,7 @@ import java.util.Map;
  *
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class Shark extends Agent {
+public class Shark extends FishAndSharkAgent {
 
     /**
      * The maximum starvation duration before dieing
@@ -34,19 +34,15 @@ public class Shark extends Agent {
      */
     private int starvation;
 
-    public Shark(Environment environment) {
+    public Shark(Environment<FishAndSharkAgent> environment) {
         super(environment);
-    }
-
-    public static int getGestationDuration() {
-        return GESTATION_DURATION;
     }
 
     @Override
     public void doIt() {
         super.doIt();
         if (starvation >= STARVATION_DURATION) {
-            environment.remove(this);
+            environment.removeAgent(this);
         } else {
             tryToEat();
             tryToGiveBirth();
@@ -59,8 +55,8 @@ public class Shark extends Agent {
      * The neighbour is chosen randomly. If this Shark can eat, its starvation down to 0, or increases otherwise.
      */
     private void tryToEat() {
-        Map<Coordinate, Agent> neighbors = environment.getNeighbors(this);
-        Agent neighbor;
+        Map<Coordinate, FishAndSharkAgent> neighbors = environment.getNeighbors(this);
+        FishAndSharkAgent neighbor;
         for (Coordinate neighborCoordinate : neighbors.keySet()) {
             neighbor = neighbors.get(neighborCoordinate);
             if (neighbor.isEatable()) {
@@ -75,15 +71,16 @@ public class Shark extends Agent {
     /**
      * Eat an agent by removing it from the environment
      *
-     * @param agent the eaten agent
+     * @param fishAndSharkAgent the eaten agent
      */
-    private void eat(Agent agent) {
-        agent.removeFromEnvironment();
+    private void eat(FishAndSharkAgent fishAndSharkAgent) {
+        fishAndSharkAgent.removeFromEnvironment();
     }
 
     @Override
     public void addChild(Coordinate childCoordinate) {
-        environment.addShark(childCoordinate);
+        Shark shark = new Shark(environment);
+        environment.addAgent(shark, childCoordinate);
     }
 
     @Override
@@ -98,7 +95,7 @@ public class Shark extends Agent {
 
     @Override
     public void removeFromEnvironment() {
-        environment.remove(this);
+        environment.removeAgent(this);
     }
 
     @Override

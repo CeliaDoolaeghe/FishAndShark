@@ -1,4 +1,4 @@
-package iagl.idl.fishandshark;
+package iagl.idl.simulation;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

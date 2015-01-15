@@ -1,4 +1,4 @@
-package iagl.idl.fishandshark.mas.environment;
+package iagl.idl.simulation.mas.environment;
 
 /**
  * A 2D Coordinate System

@@ -1,19 +1,22 @@
-package iagl.idl.fishandshark;
+package iagl.idl.simulation;
 
-import iagl.idl.fishandshark.graph.CSVLogger;
-import iagl.idl.fishandshark.graph.FishAndSharksLogger;
-import iagl.idl.fishandshark.graph.FunctionLogger;
-import iagl.idl.fishandshark.graph.PopulationLogger;
-import iagl.idl.fishandshark.mas.MAS;
-import iagl.idl.fishandshark.mas.agent.Fish;
-import iagl.idl.fishandshark.mas.agent.Shark;
-import iagl.idl.fishandshark.mas.environment.Environment;
-import iagl.idl.fishandshark.view.FishAndSharkFrame;
+import iagl.idl.simulation.graph.CSVLogger;
+import iagl.idl.simulation.graph.FishAndSharksLogger;
+import iagl.idl.simulation.graph.FunctionLogger;
+import iagl.idl.simulation.graph.PopulationLogger;
+import iagl.idl.simulation.mas.MAS;
+import iagl.idl.simulation.mas.agent.fishandsharks.Fish;
+import iagl.idl.simulation.mas.agent.fishandsharks.FishAndSharkAgent;
+import iagl.idl.simulation.mas.agent.fishandsharks.Shark;
+import iagl.idl.simulation.mas.environment.Environment;
+import iagl.idl.simulation.view.FishAndSharkFrame;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @author Célia Cacciatore, Jonathan Geoffroy
@@ -35,8 +38,18 @@ public class App {
         Shark.setGestationDuration(sharksGestation);
         Shark.setStarvationDuration(sharkStarvation);
 
-        Environment environment = new Environment(size, numberOfFish, numberOfSharks);
-        final MAS mas = new MAS(environment, delay);
+        Environment<FishAndSharkAgent> environment = new Environment<>(size);
+
+        List<FishAndSharkAgent> agents = new LinkedList<>();
+        for(int i = 0; i < numberOfFish; i ++) {
+            agents.add(new Fish(environment));
+        }
+        for(int i = 0; i < numberOfSharks; i++) {
+            agents.add(new Shark(environment));
+        }
+        environment.init(agents);
+
+        final MAS<FishAndSharkAgent> mas = new MAS<>(environment, delay);
         final CSVLogger functionLogger = new FunctionLogger(mas, "target/simulationTime.csv");
         final CSVLogger fishAndSharksLogger = new FishAndSharksLogger(mas, "target/fishAndSharks.csv");
         final PopulationLogger populationLogger = new PopulationLogger(mas, "target/population.csv");

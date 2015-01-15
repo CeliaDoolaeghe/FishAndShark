@@ -1,7 +1,8 @@
-package iagl.idl.fishandshark.mas.agent;
+package iagl.idl.simulation.mas.agent.fishandsharks;
 
-import iagl.idl.fishandshark.mas.environment.Coordinate;
-import iagl.idl.fishandshark.mas.environment.Environment;
+import iagl.idl.simulation.mas.agent.Agent;
+import iagl.idl.simulation.mas.environment.Coordinate;
+import iagl.idl.simulation.mas.environment.Environment;
 
 import java.awt.*;
 
@@ -14,15 +15,16 @@ import java.awt.*;
  *
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public abstract class Agent {
-    protected Environment environment;
+public abstract class FishAndSharkAgent implements Agent {
+    protected Environment<FishAndSharkAgent> environment;
+
     protected int gestation;
     private int age;
 
-    public Agent(Environment environment) {
-        super();
-        this.environment = environment;
+    public FishAndSharkAgent(Environment<FishAndSharkAgent> environment) {
+        this. environment = environment;
     }
+
 
     public void doIt() {
         age++;
