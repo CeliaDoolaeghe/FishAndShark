@@ -28,8 +28,15 @@ public class StatusPanel extends JPanel implements Observer {
         Environment<Agent> environment = mas.getEnvironment();
         environment.addObserver(this);
 
+        // Change layout
+        GridLayout layout = new GridLayout(0, 2);
+        setLayout(layout);
+
         // Create Labels
+        add(new JLabel("Chronons")); // Add empty column
         chrononsLabel = new JLabel(String.valueOf(mas.getScheduling()));
+        add(chrononsLabel);
+
 
         // Compute colors
         Set<Color> colors = new HashSet<>();
@@ -46,8 +53,6 @@ public class StatusPanel extends JPanel implements Observer {
         }
 
         // Add labels to Panel
-        GridLayout layout = new GridLayout(0, 2);
-        setLayout(layout);
         JLabel colorLabel;
         for(Color color : colors) {
             colorLabel = colorLabels.get(color);
