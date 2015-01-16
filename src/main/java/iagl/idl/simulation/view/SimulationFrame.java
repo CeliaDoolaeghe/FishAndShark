@@ -8,13 +8,13 @@ import java.awt.*;
 /**
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class FishAndSharkFrame extends JFrame {
+public class SimulationFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private BoardPanel boardPanel;
     private StatusPanel statusPanel;
 
-    public FishAndSharkFrame(String title, MAS mas) throws HeadlessException {
+    public SimulationFrame(String title, MAS mas) throws HeadlessException {
         super(title);
 
         // Create panels

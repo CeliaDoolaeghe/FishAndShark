@@ -9,7 +9,7 @@ import iagl.idl.simulation.mas.agent.fishandsharks.Fish;
 import iagl.idl.simulation.mas.agent.fishandsharks.FishAndSharkAgent;
 import iagl.idl.simulation.mas.agent.fishandsharks.Shark;
 import iagl.idl.simulation.mas.environment.Environment;
-import iagl.idl.simulation.view.FishAndSharkFrame;
+import iagl.idl.simulation.view.SimulationFrame;
 
 import javax.swing.*;
 import java.awt.event.WindowAdapter;
@@ -53,7 +53,7 @@ public class FishAndSharkApp {
         final CSVLogger functionLogger = new FunctionLogger(mas, "target/simulationTime.csv");
         final CSVLogger fishAndSharksLogger = new FishAndSharksLogger(mas, "target/fishAndSharks.csv");
         final PopulationLogger populationLogger = new PopulationLogger(mas, "target/population.csv");
-        JFrame frame = new FishAndSharkFrame("Fish and Shark", mas);
+        JFrame frame = new SimulationFrame("Fish and Shark", mas);
         frame.setVisible(true);
 
         frame.addWindowListener(new WindowAdapter() {

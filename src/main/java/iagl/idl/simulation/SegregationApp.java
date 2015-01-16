@@ -3,7 +3,7 @@ package iagl.idl.simulation;
 import iagl.idl.simulation.mas.MAS;
 import iagl.idl.simulation.mas.agent.segregation.SegregationAgent;
 import iagl.idl.simulation.mas.environment.Environment;
-import iagl.idl.simulation.view.FishAndSharkFrame;
+import iagl.idl.simulation.view.SimulationFrame;
 
 import javax.swing.*;
 import java.awt.*;
@@ -39,7 +39,7 @@ public class SegregationApp {
         environment.init(agents);
 
         final MAS<SegregationAgent> mas = new MAS<>(environment, delay);
-        JFrame frame = new FishAndSharkFrame("Segregation", mas);
+        JFrame frame = new SimulationFrame("Segregation", mas);
         frame.setVisible(true);
 
         frame.addWindowListener(new WindowAdapter() {
