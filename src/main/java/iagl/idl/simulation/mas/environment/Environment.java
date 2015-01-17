@@ -7,23 +7,23 @@ import java.util.*;
 /**
  * Contain the entire map model:
  * <ul>
- * <li>List of Agents</li>
- * <li>number of Fish</li>
- * <li>number of Sharks</li>
- * <li>2D board which represents the sea containing Agents</li>
+ * <li>List of the Agents</li>
+ * <li>2D board which represents the map containing the Agents</li>
  * </ul><br/>
  * <p/>
  * Environment can provide some useful information to Agents such as their position or neighbors.
+ *
+ * @author Celia Cacciatore, Jonathan Geoffroy
  */
 public class Environment<T extends Agent> extends Observable {
     /**
-     * The 2D representation of the Sea
+     * The 2D representation of the map
      * Contains all agents
      */
     private List<List<T>> board;
 
     /**
-     * All agents into the sea
+     * All agents into the map
      * Map each Agent to its current coordinate.
      */
     private Map<T, Coordinate> agents;
@@ -36,9 +36,8 @@ public class Environment<T extends Agent> extends Observable {
     private Set<T> theDead;
 
     /**
-     * Create an Environment by adding some fish & sharks.
-     *
-     * @param size the size of the sea
+     * Create an Environment by adding some agents.
+     * @param size the size of the map
      */
     public Environment(int size) {
         agents = new HashMap<>();
@@ -56,8 +55,7 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * Add fish and sharks to Environment
-     *
+     * Add agents to Environment
      * @param agents agents to add into this Environment at the beginning of the simulation
      */
     public void init(List<T> agents) {
@@ -66,15 +64,13 @@ public class Environment<T extends Agent> extends Observable {
             coordinate = findFreeSpace();
             addAgent(agent, coordinate);
         }
-
         setChanged();
     }
 
     /**
      * Find a free square near to <code>agent</code>
      * If there is more than one free square, return a square randomly.
-     *
-     * @param agent the agent which search a free space
+     * @param agent the agent which searches for a free space
      * @return a free Coordinate if at least one square near to <code>agent</code> is free, null otherwise
      */
     public Coordinate findFreeSpace(T agent) {
@@ -82,7 +78,6 @@ public class Environment<T extends Agent> extends Observable {
         assert (coordinate != null);
         List<Coordinate> possibilities = neighborsCoordinates(coordinate);
         Collections.shuffle(possibilities);
-
         for (Coordinate c : possibilities) {
             if (isFree(c)) {
                 return c;
@@ -92,17 +87,15 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * Find a free space into entire sea
-     *
+     * Find a free space into entire map
      * @return a free square if the sea isn't full, or null otherwise
      */
     public Coordinate findFreeSpace() {
-        // If there is an agent for each square: return null
+        // If there is an agent in each square: return null
         int size = board.size();
         if (agentsList.size() == size * size) {
             return null;
         }
-
         // Find a free square by randomly checking squares
         Coordinate coordinate;
         do {
@@ -110,7 +103,6 @@ public class Environment<T extends Agent> extends Observable {
             int y = (int) (Math.random() * size);
             coordinate = new Coordinate(x, y);
         } while (!isFree(coordinate));
-
         return coordinate;
     }
 
@@ -119,9 +111,8 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * return the coordinate of <code>agent</code>
-     *
-     * @param agent the agent which is placed at the returned coordinate
+     * Return the coordinate of <code>agent</code>
+     * @param agent the agent whose place is searched
      * @return the coordinate of <code>agent</code>
      */
     public Coordinate getCoordinateOf(T agent) {
@@ -130,9 +121,8 @@ public class Environment<T extends Agent> extends Observable {
 
     /**
      * Find all coordinates near to <code>coordinate</code>
-     *
-     * @param coordinate the coordinate which ask for its coordinates
-     * @return a list of neighbour coordinates.
+     * @param coordinate the coordinate which asks for its neighbor coordinates
+     * @return a list of neighbor coordinates.
      */
     private List<Coordinate> neighborsCoordinates(Coordinate coordinate) {
         int size = board.size();
@@ -150,9 +140,7 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * return a cloned list of agents
-     * agents themself are not copied.
-     *
+     * Return a cloned list of agents, agents themself are not copied.
      * @return a new list containing all agents of this Environment
      */
     public List<T> getAllAgents() {
@@ -165,7 +153,7 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * @param agent to agent to check if is dead or alive
+     * @param agent the agent to test
      * @return true if <code>agent</code> is already dead
      */
     public boolean isDead(T agent) {
@@ -173,27 +161,24 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * Clear the list of dead agents
-     * useful to free memory
-     * should be called after each simulation turn
+     * Clear the list of dead agents.
+     * Useful to free memory.
+     * Should be called after each simulation turn.
      */
     public void clearDead() {
         theDead.clear();
     }
 
     /**
-     * find each coordinate near to <code>agent</code> which contains an Agent
-     *
+     * Find each coordinate near to <code>agent</code> which contains an Agent
      * @param agent the agent who ask for its neighbor
      * @return a Map of Coordinate -> Agent of <code>agent</code>'s neighbor
      */
     public Map<Coordinate, T> getNeighbors(T agent) {
         Coordinate coordinate = agents.get(agent);
-
         // Shuffled List of neighbors' coordinates
         List<Coordinate> neighborsCoordinate = neighborsCoordinates(coordinate);
         Collections.shuffle(neighborsCoordinate);
-
         // Find the neighbors into board
         Map<Coordinate, T> neighbors = new HashMap<>();
         T neighbor;
@@ -203,7 +188,6 @@ public class Environment<T extends Agent> extends Observable {
                 neighbors.put(neighborCoordinate, neighbor);
             }
         }
-
         return neighbors;
     }
 
@@ -217,9 +201,8 @@ public class Environment<T extends Agent> extends Observable {
 
     /**
      * Add an Agent to this Environment
-     *
-     * @param agent      the agent to add
-     * @param coordinate the coordinate where to add the agent
+     * @param agent the agent to add
+     * @param coordinate the coordinate in which to add the agent
      */
     public void addAgent(T agent, Coordinate coordinate) {
         agents.put(agent, coordinate);
@@ -229,8 +212,7 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
-     * Remove an agent from this environment
-     *
+     * Remove an agent from this Environment
      * @param agent the agent to remove
      */
     public void removeAgent(T agent) {
@@ -248,8 +230,7 @@ public class Environment<T extends Agent> extends Observable {
 
     /**
      * Move the <code>agent</code> to <code>coordinate</code>
-     *
-     * @param agent      the agent to move
+     * @param agent the agent to move
      * @param coordinate the new position of <code>agent</code>
      */
     public void move(T agent, Coordinate coordinate) {
