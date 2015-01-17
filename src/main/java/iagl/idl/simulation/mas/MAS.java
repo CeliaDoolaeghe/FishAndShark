@@ -54,7 +54,7 @@ public class MAS<T extends Agent> {
         this.terminated = terminated;
     }
 
-    public Environment getEnvironment() {
+    public Environment<T> getEnvironment() {
         return environment;
     }
 
