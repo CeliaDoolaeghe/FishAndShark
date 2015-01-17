@@ -1,22 +1,45 @@
-FishAndShark
+MultiAgentSystems
 ============
 Auteurs:  
 Célia CACCIATORE,  
 Jonathan GEOFFROY
 
 ------------------------------------
-Implementation de [Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor) dans le cadre du cours Intelligence Des Logiciels (IDL), Master 2 Informatique, spécialité IAGL, Université Lille1.
+Deux systèmes multi-agents sont présentés dans ce projet dans le cadre du cours Intelligence Des Logiciels (IDL), Master 2 Informatique, spécialité IAGL, Université Lille1 :
+* FishAndSharks : Implémentation de [Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor) 
+* Segregation : Implémentation du [Modèle de Ségrégation de Schelling](http://www.gemass.fr/dphan/complexe/schellingfr.html)
 
-# Exécution #
+------------------------------------
+# Système multi-agents #
+
+La partie qui gère le système multi-agents est générique et commune aux deux projets.
+
+## Agent: Comportement ##
+Chaque *Agent* a son propre comportement ; il possède une méthode *doIt()* qui lui permet de jouer son tour dans la simulation. Cette méthode est donc l'implémentation du comportement de cet *Agent*.
+
+## Environment: Modèle ##
+Le modèle est entièrement contenu dans la classe *Environment.java*, qui référence non seulement tous les agents, mais également leur emplacement dans la map.  
+De plus, cette classe possède plusieurs **helpers** afin d'informer les *Agent*s sur l'état de l'environnement, comme par exemple la liste de ses voisins, ou encore la prochaine place libre proche de lui.
+
+## MAS: Système Multi-Agent ##
+Afin d'obtenir une simulation qui soit **Multi-Agent**, la classe *MAS.java* récupère tous les *Agent*s contenus dans l'*Environment* afin de leur permettre de jouer leurs actions.  
+
+------------------------------------
+# FishAndSharks #
+
+## Exécution ##
 Afin d'exécuter facilement l'application, un script maven est fourni:
 
     git clone https://github.com/CeliaDoolaeghe/FishAndShark.git
     cd FishAndShark
     mvn install
-    mvn exec:java -Dexec.args="100 2000 900 2 6 4 50"
+    mvn exec:java -PfishAndSharks -Dexec.args="100 2000 900 2 6 4 50"
+    
+Quand la simultation est terminée, il est possible de générer des graphes avec la commande suivante :
+    
     gnuplot *.plot
   
-## Arguments ##
+### Arguments ###
 Les différents paramètres de la simulation doivent être donné en tant que paramètres de la commande maven:
 
 |                   Paramètre                  | Valeur Conseillée |
@@ -31,16 +54,16 @@ Les différents paramètres de la simulation doivent être donné en tant que pa
 
 Soit la commande suivante pour exécuter la simulation conseillée:
 
-    mvn exec:java -Dexec.args="100 2000 900 2 6 4 50"
+    mvn exec:java -PfishAndSharks -Dexec.args="100 2000 900 2 6 4 50"
   
-## Interface Graphique  ##
+### Interface Graphique  ###
 L'interface graphique fournie présente l'environnement sous forme de ronds de couleurs:
 
  * bleu pour un poisson,
  * rouge pour un requin,
  * gris clair pour une case vide.
   
-## Génération de graphiques ##
+### Génération de graphiques ###
 Afin de générer automatiquement les graphiques correspondant à la simulation, deux fichiers gnuplot sont fournis:
 
  * **simulationFishAndShark.plot** crée un nuage de points en fonction du nombre de poissons et de requins 
@@ -55,44 +78,12 @@ Les courbes obtenues :
  ![](doc/simulationTime.png)  
  ![](doc/fishAndSharks.png)
 
-# Structure du Projet #
+## Structure du projet ##
 
-     ./src/main/java/
-    └── iagl
-        └── idl
-            └── fishandshark
-                ├── App.java
-                ├── graph
-                │   ├── CSVLogger.java
-                │   ├── FishAndSharksLogger.java
-                │   └── FunctionLogger.java
-                ├── mas
-                │   ├── agent
-                │   │   ├── Agent.java
-                │   │   ├── Fish.java
-                │   │   └── Shark.java
-                │   ├── environment
-                │   │   ├── Coordinate.java
-                │   │   └── Environment.java
-                │   └── MAS.java
-                └── view
-                    ├── BoardPanel.java
-                    ├── FishAndSharkFrame.java
-                    └── StatusPanel.java
+Il existe deux types d'agents : les poissons (Fish) et les requins (Sharks).
 
-## MAS: Système Multi-Agent ##
-Afin d'obetnir une simulation qui soit **Multi-Agent**, la classe *MAS.java* récupère tous les *Agent*s contenus dans l'*Environment* afin de leur permettre de jouer leurs actions.  
+### Fish: Poisson ###
+Le comportement d'un poisson est de tenter de se déplacer si possible, c'est-à-dire si au moins une case adjacente est libre. Le poisson essaye ensuite dans le même tour de donner vie à un autre poisson si cela lui est possible, c'est-à-dire s'il est arrivé au bout de sa gestation et si au moins une case adjacente est libre pour y placer le nouveau poisson. S'il est impossible de donner naissance, la gestation repart de zéro. Il vieillit à chaque tour.
 
-## Environment: Modèle ##
-Le modèle est entièrement contenu dans la classe *Environment.java*, qui référence non seulement tous les agents, mais également leur emplacement dans la mer.  
-De plus, cette classe possède plusieurs **helpers** afin d'informer les *Agent*s sur l'état de l'environnement, comme par exemple la liste de ses voisins, ou encore la prochaine place libre proche de lui.
-
-## Agent: Comportement ##
-Chaque *Agent* a son propre comportement ; il possède une méthode *doIt()* qui lui permet de jouer son tour dans la simulation. Cette méthode est donc l'implémentation du comportement de cet *Agent*.  
-On trouve dans cette implémentation deux types d'*Agent*s: les poissons (*Fish*) et les requins (*Sharks*). Tous les agents vieillissent à chaque tour. 
-
-## Fish: Poisson ##
-Le comportement d'un poisson est de tenter de se déplacer si possible, c'est-à-dire si au moins une case adjacente est libre. Le poisson essaye ensuite dans le même tour de donner vie à un autre poisson si cela lui est possible, s'il est arrivé au bout de sa gestation et si au moins une case adjacente est libre pour y placer le nouveau poisson. S'il est impossible de donner naissance, la gestation repart de zéro.
-
-## Shark: Requin ##
-En premier, le requin vérifie qu'il n'est pas déjà mort de faim. Si tel est le cas, il se supprime de l'environnement. Dans le cas contraire, il tente d'abord de manger un poisson si celui-ci est sur une case adjacente. Il tente ensuite de faire naitre un nouveau requin, avant de se déplacer si cela lui est possible, en suivant les mêmes règles que pour le poisson.
+### Shark: Requin ###
+En premier, le requin vérifie qu'il n'est pas déjà mort de faim ; si tel est le cas, il se supprime de l'environnement. Dans le cas contraire, il tente d'abord de manger un poisson si celui-ci est sur une case adjacente. Il tente ensuite de faire naitre un nouveau requin, avant de se déplacer si cela lui est possible, en suivant les mêmes règles que pour le poisson. Il vieillit à chaque tour.
