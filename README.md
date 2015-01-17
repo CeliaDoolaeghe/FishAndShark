@@ -30,8 +30,8 @@ Afin d'obtenir une simulation qui soit **Multi-Agent**, la classe *MAS.java* ré
 ## Exécution ##
 Afin d'exécuter facilement l'application, un script maven est fourni:
 
-    git clone https://github.com/CeliaDoolaeghe/FishAndShark.git
-    cd FishAndShark
+    git clone https://github.com/CeliaDoolaeghe/MultiAgentSystems.git
+    cd MultiAgentSystems
     mvn install
     mvn exec:java -PfishAndSharks -Dexec.args="100 2000 900 2 6 4 50"
     
@@ -40,7 +40,7 @@ Quand la simultation est terminée, il est possible de générer des graphes ave
     gnuplot *.plot
   
 ### Arguments ###
-Les différents paramètres de la simulation doivent être donné en tant que paramètres de la commande maven:
+Les différents paramètres de la simulation doivent être donnés en tant que paramètres de la commande maven:
 
 |                   Paramètre                  | Valeur Conseillée |
 |:--------------------------------------------:|:-----------------:|
@@ -87,3 +87,49 @@ Le comportement d'un poisson est de tenter de se déplacer si possible, c'est-à
 
 ### Shark: Requin ###
 En premier, le requin vérifie qu'il n'est pas déjà mort de faim ; si tel est le cas, il se supprime de l'environnement. Dans le cas contraire, il tente d'abord de manger un poisson si celui-ci est sur une case adjacente. Il tente ensuite de faire naitre un nouveau requin, avant de se déplacer si cela lui est possible, en suivant les mêmes règles que pour le poisson. Il vieillit à chaque tour.
+
+------------------------------------
+# Segregation #
+
+## Exécution ##
+Afin d'exécuter facilement l'application, un script maven est fourni:
+
+    git clone https://github.com/CeliaDoolaeghe/MultiAgentSystems.git
+    cd MultiAgentSystems
+    mvn install
+    mvn exec:java -Psegregation -Dexec.args="100 1000 500 50 50"
+    
+Quand la simultation est terminée, il est possible de générer des graphes avec la commande suivante :
+    
+    gnuplot *.plot
+  
+### Arguments ###
+Les différents paramètres de la simulation doivent être donnés en tant que paramètres de la commande maven:
+
+|                   Paramètre                  | Valeur Conseillée |
+|:--------------------------------------------:|:-----------------:|
+| taille de la ville                           | 100               |
+| nombre d'agents verts                        | 1000              |
+| nombre d'agents rouges                       | 500               |
+| seuil de tolérance (en pourcentage)          | 50                |
+| délai d'attente entre 2 tours                | 50                |
+
+Soit la commande suivante pour exécuter la simulation conseillée:
+
+    mvn exec:java -Psegregation -Dexec.args="100 1000 500 50 50"
+  
+### Interface Graphique  ###
+L'interface graphique fournie présente l'environnement sous forme de ronds de couleurs:
+
+ * vert pour un agent vert,
+ * rouge pour un agent rouge,
+ * gris clair pour une case vide.
+  
+### Génération de graphiques ###
+
+TODO
+
+## Structure du projet ##
+
+### SegregationAgent ###
+L'agent se déplace si son niveau de satisfaction est inférieur à son seuil de tolérance. Le niveau de satisfaction est le nombre de voisins ayant la même couleur que lui sur le nombre total de voisins possibles (les agents sur le bord de la map ne sont pas désavantagés).
