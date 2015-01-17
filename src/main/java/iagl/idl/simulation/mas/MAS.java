@@ -42,18 +42,9 @@ public class MAS<T extends Agent> {
      * @throws InterruptedException
      */
     public void run() throws InterruptedException {
-        while (!terminated) {
-            Thread.sleep(delay);
-            List<T> agents = environment.getAllAgents();
-            for (T agent : agents) {
-                if (!environment.isDead(agent)) {
-                    agent.doIt();
-                }
-            }
-            scheduling++;
-            environment.clearDead();
-            environment.notifyObservers();
-        }
+        terminated = false;
+        Thread masRunner = new Thread(new MASRunner());
+        masRunner.start();
     }
 
     public long getScheduling() {
@@ -66,5 +57,33 @@ public class MAS<T extends Agent> {
 
     public Environment getEnvironment() {
         return environment;
+    }
+
+    public boolean isTerminated() {
+        return terminated;
+    }
+
+    class MASRunner implements Runnable {
+
+        @Override
+        public void run() {
+            try {
+                while (!terminated) {
+                    Thread.sleep(delay);
+                    List<T> agents = environment.getAllAgents();
+                    for (T agent : agents) {
+                        if (!environment.isDead(agent)) {
+                            agent.doIt();
+                        }
+                    }
+                    scheduling++;
+                    environment.clearDead();
+                    environment.notifyObservers();
+                }
+            } catch(InterruptedException e) {
+                e.printStackTrace();
+                System.exit(-1);
+            }
+        }
     }
 }

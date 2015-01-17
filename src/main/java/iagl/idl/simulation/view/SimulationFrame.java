@@ -11,23 +11,24 @@ import java.awt.*;
 public class SimulationFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private BoardPanel boardPanel;
-    private StatusPanel statusPanel;
 
     public SimulationFrame(String title, MAS mas) throws HeadlessException {
         super(title);
 
         // Create panels
-        boardPanel = new BoardPanel(mas.getEnvironment());
+        BoardPanel boardPanel = new BoardPanel(mas.getEnvironment());
         boardPanel.setPreferredSize(new Dimension(600, 600));
-        statusPanel = new StatusPanel(mas);
-        statusPanel.setPreferredSize(new Dimension(200, 600));
+        StatusPanel statusPanel = new StatusPanel(mas);
+        JPanel timePanel = new TimePanel(mas);
 
         JPanel globalLayout = new JPanel();
-        globalLayout.setLayout(new BoxLayout(globalLayout, BoxLayout.X_AXIS));
+        globalLayout.setLayout(new BorderLayout());
+
         // Add panels to this Frame
-        globalLayout.add(boardPanel);
-        globalLayout.add(statusPanel);
+        globalLayout.add(boardPanel, BorderLayout.CENTER);
+        globalLayout.add(statusPanel, BorderLayout.EAST);
+        globalLayout.add(timePanel, BorderLayout.SOUTH);
+
         this.setContentPane(globalLayout);
         this.setSize(new Dimension(800, 600));
 
