@@ -192,6 +192,30 @@ public class Environment<T extends Agent> extends Observable {
     }
 
     /**
+     * Find each coordinate near to <code>agent</code>
+     * @param agent the agent who ask for its neighbor
+     * @return a Map of Coordinate -> Agent of <code>agent</code>'s neighbor
+     */
+    public Map<Coordinate, T> getAllNeighbors(T agent) {
+        Coordinate coordinate = agents.get(agent);
+        // Shuffled List of neighbors' coordinates
+        List<Coordinate> neighborsCoordinate = neighborsCoordinates(coordinate);
+        Collections.shuffle(neighborsCoordinate);
+        // Find the neighbors into board
+        Map<Coordinate, T> neighbors = new HashMap<>();
+        T neighbor;
+        for (Coordinate neighborCoordinate : neighborsCoordinate) {
+            neighbor = getBoardSquare(neighborCoordinate);
+            if (neighbor != null) {
+                neighbors.put(neighborCoordinate, neighbor);
+            } else {
+            	neighbors.put(neighborCoordinate, null);
+            }
+        }
+        return neighbors;
+    }
+
+    /**
      * @param coordinate the coordinate to check
      * @return true iff there is no Agent into <code>coordinate</code>
      */

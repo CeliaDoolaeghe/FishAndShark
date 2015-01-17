@@ -9,14 +9,14 @@ import java.util.Map;
 
 /**
  * Agent for Schelling Segregation simulation
- * This Agent compute the compatibility with his neighbor. Two Agents with a different color are incompatibles.
- * Otherwise, if neighbor has the same color, or if there is no agent on a near square, compatibility increase.<br/>
- * If compatibility with neighbor is less than intolerance, Agent try to move to a near square
+ * This Agent computes the compatibility with his neighbor. Two Agents with a different color are incompatibles.
+ * Otherwise, if a neighbor has the same color, or if there is no agent on a near square, compatibility increases.<br/>
+ * If compatibility with neighbor is less than tolerance, Agent tries to move to a near square
  *
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class SegregationAgent implements Agent {
-    private static int INTOLERANCE = 30;
+    private static float TOLERANCE = 30/100;
 
     /**
      * Environment where this agent is
@@ -33,14 +33,26 @@ public class SegregationAgent implements Agent {
         this.color = color;
     }
 
-    public static void setINTOLERANCE(int INTOLERANCE) {
-        SegregationAgent.INTOLERANCE = INTOLERANCE;
+    private float getSatisfaction() {
+        final Map<Coordinate, SegregationAgent> neighbors = environment.getAllNeighbors(this);
+        float compatibility = 0;
+        for(SegregationAgent agent : neighbors.values()) {
+            if(agent != null && agent.color.equals((color))) {
+                compatibility++;
+            }
+        }
+        compatibility = compatibility / neighbors.size();
+        return compatibility;
+	}
+
+	public static void setTOLERANCE(float tolerance) {
+        SegregationAgent.TOLERANCE = tolerance;
     }
 
     @Override
     public void doIt() {
         if(needToMove()) {
-            Coordinate nextMove = environment.findFreeSpace(this);
+            Coordinate nextMove = environment.findFreeSpace();
             if(nextMove != null) {
                 environment.move(this, nextMove);
             }
@@ -48,20 +60,11 @@ public class SegregationAgent implements Agent {
     }
 
     /**
-     * Check if this agent need to move, i.e. if the compatibility with his neighbors is less than intolerance
-     * @return true iff the compatibility with his neighbors is less than intolerance
+     * Check if this agent needs to move, i.e. if the satisfaction with his neighbors is less than tolerance
+     * @return true iff the satisfaction with his neighbors is less than tolerance
      */
     private boolean needToMove() {
-        int nbNeighbors = 8;
-        final Map<Coordinate, SegregationAgent> neighbors = environment.getNeighbors(this);
-        int compatibility = nbNeighbors - neighbors.size(); // free space is considered as compatible
-        for(SegregationAgent agent : neighbors.values()) {
-            if(agent.color.equals((color))) {
-                compatibility++;
-            }
-        }
-        compatibility = compatibility * 100 / 8;
-        return compatibility < INTOLERANCE;
+        return getSatisfaction() < TOLERANCE;
     }
 
     @Override
