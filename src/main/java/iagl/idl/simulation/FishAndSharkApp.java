@@ -1,9 +1,8 @@
 package iagl.idl.simulation;
 
 import iagl.idl.simulation.graph.CSVLogger;
-import iagl.idl.simulation.graph.FishAndSharksLogger;
-import iagl.idl.simulation.graph.FunctionLogger;
 import iagl.idl.simulation.graph.PopulationLogger;
+import iagl.idl.simulation.graph.TimeLogger;
 import iagl.idl.simulation.mas.MAS;
 import iagl.idl.simulation.mas.agent.fishandsharks.Fish;
 import iagl.idl.simulation.mas.agent.fishandsharks.FishAndSharkAgent;
@@ -50,9 +49,12 @@ public class FishAndSharkApp {
         environment.init(agents);
 
         final MAS<FishAndSharkAgent> mas = new MAS<>(environment, delay);
-        final CSVLogger functionLogger = new FunctionLogger(mas, "target/simulationTime.csv");
-        final CSVLogger fishAndSharksLogger = new FishAndSharksLogger(mas, "target/fishAndSharks.csv");
-        final PopulationLogger populationLogger = new PopulationLogger(mas, "target/population.csv");
+
+        // Configure Loggers
+
+        new TimeLogger(mas);
+        new PopulationLogger(mas);
+
         JFrame frame = new SimulationFrame("Fish and Shark", mas);
         frame.setVisible(true);
 
@@ -61,9 +63,6 @@ public class FishAndSharkApp {
             public void windowClosing(WindowEvent e) {
                 super.windowClosing(e);
                 mas.setTerminated(true);
-                functionLogger.close();
-                fishAndSharksLogger.close();
-                populationLogger.write();
             }
         });
         mas.run();

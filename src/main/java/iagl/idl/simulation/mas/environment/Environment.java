@@ -2,7 +2,9 @@ package iagl.idl.simulation.mas.environment;
 
 import iagl.idl.simulation.mas.agent.Agent;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Contain the entire map model:
@@ -269,5 +271,23 @@ public class Environment<T extends Agent> extends Observable {
 
     public List<List<T>> getBoard() {
         return board;
+    }
+
+    public Map<Color, Integer> getAgentGroupedByColor() {
+        // Compute the number of Agents for each color
+        Color currentColor;
+        int nbAgentsForColor;
+        Map<Color, Integer> counter = new HashMap<>();
+        for(Agent agent : agentsList) {
+            currentColor = agent.getColor();
+            if(counter.containsKey(currentColor)) {
+                nbAgentsForColor = counter.get(currentColor) + 1;
+            }
+            else {
+                nbAgentsForColor = 1;
+            }
+            counter.put(currentColor, nbAgentsForColor);
+        }
+        return counter;
     }
 }

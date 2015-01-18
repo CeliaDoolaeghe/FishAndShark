@@ -33,7 +33,7 @@ public class SegregationAgent implements Agent {
         this.color = color;
     }
 
-    private float getSatisfaction() {
+    public float getSatisfaction() {
         final Map<Coordinate, SegregationAgent> neighbors = environment.getAllNeighbors(this);
         float compatibility = 0;
         for(SegregationAgent agent : neighbors.values()) {

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info">
+    <Appenders>
+        <File name="TimeLogger" fileName="target/simulationTime.csv.csv" append="false">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+        </File>
+        <File name="PopulationLogger" fileName="target/simulationPopulation.csv" append="false">
+            <PatternLayout>
+                <Pattern>%m%n</Pattern>
+            </PatternLayout>
+        </File>
+    </Appenders>
+    <Loggers>
+        <Logger name="iagl.idl.simulation.graph.PopulationLogger" level="trace">
+            <AppenderRef ref="PopulationLogger"/>
+        </Logger>
+        <Logger name="iagl.idl.simulation.graph.TimeLogger" level="trace">
+            <AppenderRef ref="TimeLogger"/>
+        </Logger>
+    </Loggers>
+</Configuration>

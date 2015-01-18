@@ -68,20 +68,7 @@ public class StatusPanel extends JPanel implements Observer {
         Environment<Agent> environment = mas.getEnvironment();
         chrononsLabel.setText(String.valueOf(mas.getScheduling()));
 
-        // Compute the number of Agents for each color
-        Color currentColor;
-        int nbAgentsForColor;
-        Map<Color, Integer> counter = new HashMap<>();
-        for(Agent agent : environment.getAllAgents()) {
-            currentColor = agent.getColor();
-            if(counter.containsKey(currentColor)) {
-                nbAgentsForColor = counter.get(currentColor) + 1;
-            }
-            else {
-                nbAgentsForColor = 1;
-            }
-            counter.put(currentColor, nbAgentsForColor);
-        }
+        Map<Color, Integer> counter = environment.getAgentGroupedByColor();
 
         // Update each JLabel
         for(Color color: counter.keySet()) {

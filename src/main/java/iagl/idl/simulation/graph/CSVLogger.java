@@ -1,37 +1,45 @@
 package iagl.idl.simulation.graph;
 
 import iagl.idl.simulation.mas.MAS;
+import iagl.idl.simulation.mas.agent.Agent;
 import iagl.idl.simulation.mas.environment.Environment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public class CSVLogger implements Observer {
+public abstract class CSVLogger<T extends Agent> implements Observer {
 
-    protected final MAS mas;
-    protected final PrintWriter writer;
+    protected final MAS<T> mas;
+    protected final Logger logger;
 
-    public CSVLogger(MAS mas, String filePath) throws FileNotFoundException {
+    public CSVLogger(MAS<T> mas) throws FileNotFoundException {
         this.mas = mas;
         mas.getEnvironment().addObserver(this);
-        writer = new PrintWriter(filePath);
+        logger = LogManager.getLogger(this.getClass());
     }
+
     @Override
     public void update(Observable observable, Object o) {
         writeLine();
     }
 
-    protected void writeLine() {
+    protected void getColorPopulation(StringBuilder builder) {
         Environment environment = mas.getEnvironment();
-//        writer.printf("%s %s %s%n", mas.getScheduling(), environment.getFish(), environment.getSharks());
+        Map<Color, Integer> agentColors = environment.getAgentGroupedByColor();
+        int nb;
+        for(Color color : agentColors.keySet()) {
+            nb = agentColors.get(color);
+            builder.append(nb).append(" ");
+        }
     }
 
-    public void close() {
-        writer.close();
-    }
+    protected abstract void writeLine();
 }

@@ -1,5 +1,6 @@
 package iagl.idl.simulation;
 
+import iagl.idl.simulation.graph.SatisfactionLogger;
 import iagl.idl.simulation.mas.MAS;
 import iagl.idl.simulation.mas.agent.segregation.SegregationAgent;
 import iagl.idl.simulation.mas.environment.Environment;
@@ -9,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,7 +18,7 @@ import java.util.List;
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class SegregationApp {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws InterruptedException, FileNotFoundException {
         if (args.length < 5) {
             usage();
         }
@@ -39,6 +41,10 @@ public class SegregationApp {
         environment.init(agents);
 
         final MAS<SegregationAgent> mas = new MAS<>(environment, delay);
+
+        // Initialize Logger
+        new SatisfactionLogger(mas);
+
         JFrame frame = new SimulationFrame("Segregation", mas);
         frame.setVisible(true);
 

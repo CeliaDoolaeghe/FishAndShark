@@ -21,7 +21,17 @@
 			<version>3.8.1</version>
 			<scope>test</scope>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>2.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.1</version>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
@@ -62,7 +72,7 @@
 						</executions>
 						<configuration>
 							<executable>java</executable>
-							<commandlineArgs></commandlineArgs>
+							<commandlineArgs>-Dlog4j.configurationFile=src/main/resources/fishAndSharks/</commandlineArgs>
 							<mainClass>iagl.idl.simulation.FishAndSharkApp</mainClass>
 						</configuration>
 					</plugin>
@@ -95,7 +105,7 @@
 						</executions>
 						<configuration>
 							<executable>java</executable>
-							<commandlineArgs></commandlineArgs>
+							<commandlineArgs>-Dlog4j2.configurationFile=src/main/resources/segregation/</commandlineArgs>
 							<mainClass>iagl.idl.simulation.SegregationApp</mainClass>
 						</configuration>
 					</plugin>
