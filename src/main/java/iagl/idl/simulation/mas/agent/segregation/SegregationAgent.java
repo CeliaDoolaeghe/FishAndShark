@@ -35,13 +35,13 @@ public class SegregationAgent implements Agent {
 
     public float getSatisfaction() {
         final Map<Coordinate, SegregationAgent> neighbors = environment.getAllNeighbors(this);
-        float compatibility = 0;
+        int compatibility = 0;
         for(SegregationAgent agent : neighbors.values()) {
             if(agent != null && agent.color.equals((color))) {
                 compatibility++;
             }
         }
-        compatibility = compatibility / neighbors.size() * 100;
+        compatibility = compatibility * 100 / 8;
         return compatibility;
 	}
 
