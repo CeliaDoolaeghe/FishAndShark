@@ -27,7 +27,7 @@ public class SatisfactionLogger extends CSVLogger<SegregationAgent> {
         for(SegregationAgent agent : agents) {
             satisfaction += agent.getSatisfaction();
         }
-        satisfaction = satisfaction * 100 / agents.size();
+        satisfaction = satisfaction / agents.size();
 
         logger.trace(chronons + " " + satisfaction);
     }
