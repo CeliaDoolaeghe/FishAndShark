@@ -72,7 +72,9 @@
 						</executions>
 						<configuration>
 							<executable>java</executable>
-							<commandlineArgs>-Dlog4j.configurationFile=src/main/resources/fishAndSharks/</commandlineArgs>
+							<arguments>
+								<argument>-Dlog4j.configuration=fishAndSharks/log4j2.xml</argument>
+							</arguments>
 							<mainClass>iagl.idl.simulation.FishAndSharkApp</mainClass>
 						</configuration>
 					</plugin>
@@ -105,7 +107,9 @@
 						</executions>
 						<configuration>
 							<executable>java</executable>
-							<commandlineArgs>-Dlog4j2.configurationFile=src/main/resources/segregation/</commandlineArgs>
+							<arguments>
+								<argument>-Dlog4j.configuration=segregation/log4j2.xml</argument>
+							</arguments>
 							<mainClass>iagl.idl.simulation.SegregationApp</mainClass>
 						</configuration>
 					</plugin>
