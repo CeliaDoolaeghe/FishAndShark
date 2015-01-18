@@ -126,8 +126,11 @@ L'interface graphique fournie présente l'environnement sous forme de ronds de c
  * gris clair pour une case vide.
   
 ### Génération de graphiques ###
+#### Seuil de Tolérance = 30 #### 
+![](doc/simulationSatisfaction_30.png)  
 
-TODO
+#### Seuil de Tolérance = 50 ####
+![](doc/simulationTime_50.png)  
 
 ## Structure du projet ##
 
