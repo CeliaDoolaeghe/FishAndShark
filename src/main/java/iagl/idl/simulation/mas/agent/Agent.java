@@ -1,8 +1,6 @@
 package iagl.idl.simulation.mas.agent;
 
-import iagl.idl.simulation.mas.environment.Environment;
-
-import java.awt.*;
+import java.awt.Color;
 
 /**
  * @author Celia Cacciatore, Jonathan Geoffroy

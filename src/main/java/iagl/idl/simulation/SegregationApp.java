@@ -20,21 +20,21 @@ public class SegregationApp {
         if (args.length < 5) {
             usage();
         }
-        
+
         int size = Integer.parseInt(args[0]);
         int numberOfGreen = Integer.parseInt(args[1]);
         int numberOfRed = Integer.parseInt(args[2]);
-        int intolerance = Integer.parseInt(args[3]);
+        float tolerance = Float.parseFloat(args[3]) / 100;
         int delay = Integer.parseInt(args[4]);
 
-        SegregationAgent.setINTOLERANCE(intolerance);
+        SegregationAgent.setTOLERANCE(tolerance);
         Environment<SegregationAgent> environment = new Environment<>(size);
         List<SegregationAgent> agents = new LinkedList<>();
         for (int i = 0; i < numberOfGreen; i++) {
-            agents.add(new SegregationAgent(environment, Color.RED));
+            agents.add(new SegregationAgent(environment, Color.GREEN));
         }
         for (int i = 0; i < numberOfRed; i++) {
-            agents.add(new SegregationAgent(environment, Color.GREEN));
+            agents.add(new SegregationAgent(environment, Color.RED));
         }
         environment.init(agents);
 
@@ -53,7 +53,7 @@ public class SegregationApp {
     }
 
     private static void usage() {
-        System.err.println("usage: size numberGreen numberOfRed intolerance delay");
+        System.err.println("usage: size numberOfGreen numberOfRed intolerance delay");
         System.exit(-1);
     }
 }

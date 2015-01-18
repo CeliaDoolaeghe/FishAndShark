@@ -3,7 +3,7 @@ package iagl.idl.simulation.mas.environment;
 /**
  * A 2D Coordinate System
  *
- * @
+ * @author Celia Cacciatore, Jonathan Geoffroy
  */
 public class Coordinate {
 

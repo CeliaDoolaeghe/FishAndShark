@@ -29,15 +29,14 @@ public class MAS<T extends Agent> {
      */
     private Environment<T> environment;
 
-
     public MAS(Environment<T> environment, int delay) {
         this.environment = environment;
         this.delay = delay;
     }
 
     /**
-     * Run the simulation while the simulation is not <code>terminated</code>
-     * wait <code>delay</code> ms between two turns
+     * Run the simulation while the simulation is not <code>terminated</code>.
+     * Wait <code>delay</code> ms between two turns.
      *
      * @throws InterruptedException
      */
@@ -55,7 +54,7 @@ public class MAS<T extends Agent> {
         this.terminated = terminated;
     }
 
-    public Environment getEnvironment() {
+    public Environment<T> getEnvironment() {
         return environment;
     }
 
