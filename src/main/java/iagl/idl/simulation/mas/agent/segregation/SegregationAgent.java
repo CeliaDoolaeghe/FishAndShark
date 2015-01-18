@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class SegregationAgent implements Agent {
-    private static float TOLERANCE = 30/100;
+    private static int TOLERANCE = 30;
 
     /**
      * Environment where this agent is
@@ -41,11 +41,11 @@ public class SegregationAgent implements Agent {
                 compatibility++;
             }
         }
-        compatibility = compatibility / neighbors.size();
+        compatibility = compatibility / neighbors.size() * 100;
         return compatibility;
 	}
 
-	public static void setTOLERANCE(float tolerance) {
+	public static void setTOLERANCE(int tolerance) {
         SegregationAgent.TOLERANCE = tolerance;
     }
 

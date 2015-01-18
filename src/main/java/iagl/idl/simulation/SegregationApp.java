@@ -26,7 +26,7 @@ public class SegregationApp {
         int size = Integer.parseInt(args[0]);
         int numberOfGreen = Integer.parseInt(args[1]);
         int numberOfRed = Integer.parseInt(args[2]);
-        float tolerance = Float.parseFloat(args[3]) / 100;
+        int tolerance = Integer.parseInt(args[3]);
         int delay = Integer.parseInt(args[4]);
 
         SegregationAgent.setTOLERANCE(tolerance);
