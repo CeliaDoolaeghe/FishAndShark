@@ -35,7 +35,7 @@ Afin d'exécuter facilement l'application, un script maven est fourni:
     mvn install
     mvn exec:java -PfishAndSharks -Dexec.args="100 2000 900 2 6 4 50"
     
-Quand la simultation est terminée, il est possible de générer des graphes avec la commande suivante :
+Quand la simulation est terminée, il est possible de générer des graphes avec la commande suivante :
     
     gnuplot *.plot
   
@@ -99,7 +99,7 @@ Afin d'exécuter facilement l'application, un script maven est fourni:
     mvn install
     mvn exec:java -Psegregation -Dexec.args="100 1000 500 50 50"
     
-Quand la simultation est terminée, il est possible de générer des graphes avec la commande suivante :
+Quand la simulation est terminée, il est possible de générer des graphes avec la commande suivante :
     
     gnuplot *.plot
   
