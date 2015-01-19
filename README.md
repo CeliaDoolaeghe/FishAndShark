@@ -97,7 +97,7 @@ Afin d'exécuter facilement l'application, un script maven est fourni:
     git clone https://github.com/CeliaDoolaeghe/MultiAgentSystems.git
     cd MultiAgentSystems
     mvn install
-    mvn exec:java -Psegregation -Dexec.args="100 1000 500 50 50"
+    mvn exec:java -Psegregation -Dexec.args="50 1000 500 50 50"
     
 Quand la simulation est terminée, il est possible de générer des graphes avec la commande suivante :
     
@@ -108,7 +108,7 @@ Les différents paramètres de la simulation doivent être donnés en tant que p
 
 |                   Paramètre                  | Valeur Conseillée |
 |:--------------------------------------------:|:-----------------:|
-| taille de la ville                           | 100               |
+| taille de la ville                           | 50                |
 | nombre d'agents verts                        | 1000              |
 | nombre d'agents rouges                       | 500               |
 | seuil de tolérance (en pourcentage)          | 50                |
@@ -116,7 +116,7 @@ Les différents paramètres de la simulation doivent être donnés en tant que p
 
 Soit la commande suivante pour exécuter la simulation conseillée:
 
-    mvn exec:java -Psegregation -Dexec.args="100 1000 500 50 50"
+    mvn exec:java -Psegregation -Dexec.args="50 1000 500 50 50"
   
 ### Interface Graphique  ###
 L'interface graphique fournie présente l'environnement sous forme de ronds de couleurs:
