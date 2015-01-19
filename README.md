@@ -133,7 +133,7 @@ L'interface graphique fournie présente l'environnement sous forme de ronds de c
 
 #### Seuil de Tolérance = 50
 
-![](doc/simulationTime_50.png)  
+![](doc/simulationSatisfaction_50.png)  
 
 ## Structure du projet ##
 
