@@ -127,17 +127,19 @@ L'interface graphique fournie présente l'environnement sous forme de ronds de c
   
 ### Génération de graphiques ###
 
+L'initialisation étant aléatoire, la plupart des agents se retrouvent en début de simulation avec un taux de satisfaction de 50%.
+
 #### Seuil de Tolérance = 30
 
 ![](doc/simulationSatisfaction_30.png)  
 
-Bien que le seuil de tolérance soit de 30%, les agents se déplacent et se regroupent jusqu'à obtenir 60% de satisfaction de leurs voisins.
+Bien que le seuil de tolérance soit de 30%, les agents gardent restent satisfaits à 50% de leurs voisins.
 
 #### Seuil de Tolérance = 50
 
 ![](doc/simulationSatisfaction_50.png)  
 
-Cette fois, le seuil de tolérance est de 50%, mais les agents se déplacent et se regroupent à nouveau jusqu'à obtenir 75% de satisfaction de leurs voisins.
+Cette fois, le seuil de tolérance est de 50%, mais les agents se déplacent et se regroupent à nouveau jusqu'à obtenir plus de 80% de satisfaction de leurs voisins.
 
 ## Structure du projet ##
 
