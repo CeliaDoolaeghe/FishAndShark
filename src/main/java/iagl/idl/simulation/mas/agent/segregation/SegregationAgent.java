@@ -41,7 +41,7 @@ public class SegregationAgent implements Agent {
                 compatibility++;
             }
         }
-        compatibility = compatibility * 100 / 8;
+        compatibility = compatibility * 100 / neighbors.size();
         return compatibility;
 	}
 
