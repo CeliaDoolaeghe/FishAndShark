@@ -108,7 +108,7 @@ public class Environment<T extends Agent> extends Observable {
         return coordinate;
     }
 
-    private T getBoardSquare(Coordinate coordinate) {
+    public T getAgentAt(Coordinate coordinate) {
         return board.get(coordinate.getY()).get(coordinate.getX());
     }
 
@@ -126,7 +126,7 @@ public class Environment<T extends Agent> extends Observable {
      * @param coordinate the coordinate which asks for its neighbor coordinates
      * @return a list of neighbor coordinates.
      */
-    private List<Coordinate> neighborsCoordinates(Coordinate coordinate) {
+    public List<Coordinate> neighborsCoordinates(Coordinate coordinate) {
         int size = board.size();
         List<Coordinate> possibilities = new LinkedList<>();
         Coordinate currentCoordinate;
@@ -185,7 +185,7 @@ public class Environment<T extends Agent> extends Observable {
         Map<Coordinate, T> neighbors = new HashMap<>();
         T neighbor;
         for (Coordinate neighborCoordinate : neighborsCoordinate) {
-            neighbor = getBoardSquare(neighborCoordinate);
+            neighbor = getAgentAt(neighborCoordinate);
             if (neighbor != null) {
                 neighbors.put(neighborCoordinate, neighbor);
             }
@@ -207,7 +207,7 @@ public class Environment<T extends Agent> extends Observable {
         Map<Coordinate, T> neighbors = new HashMap<>();
         T neighbor;
         for (Coordinate neighborCoordinate : neighborsCoordinate) {
-            neighbor = getBoardSquare(neighborCoordinate);
+            neighbor = getAgentAt(neighborCoordinate);
             if (neighbor != null) {
                 neighbors.put(neighborCoordinate, neighbor);
             } else {
@@ -222,7 +222,7 @@ public class Environment<T extends Agent> extends Observable {
      * @return true iff there is no Agent into <code>coordinate</code>
      */
     private boolean isFree(Coordinate coordinate) {
-        return getBoardSquare(coordinate) == null;
+        return getAgentAt(coordinate) == null;
     }
 
     /**

@@ -22,12 +22,12 @@ public class MAS<T extends Agent> {
      */
     private long scheduling;
 
-    private boolean terminated;
+    protected boolean terminated;
 
     /**
      * The Environment of this Simulation
      */
-    private Environment<T> environment;
+    protected Environment<T> environment;
 
     public MAS(Environment<T> environment, int delay) {
         this.environment = environment;
@@ -46,6 +46,18 @@ public class MAS<T extends Agent> {
         masRunner.start();
     }
 
+    public void runOnce() {
+         List<T> agents = environment.getAllAgents();
+         for (T agent : agents) {
+             if (!environment.isDead(agent)) {
+                 agent.doIt();
+             }
+         }
+         scheduling++;
+         environment.clearDead();
+         environment.notifyObservers();
+    }
+    
     public long getScheduling() {
         return scheduling;
     }
@@ -68,21 +80,15 @@ public class MAS<T extends Agent> {
         public void run() {
             try {
                 while (!terminated) {
-                    Thread.sleep(delay);
-                    List<T> agents = environment.getAllAgents();
-                    for (T agent : agents) {
-                        if (!environment.isDead(agent)) {
-                            agent.doIt();
-                        }
-                    }
-                    scheduling++;
-                    environment.clearDead();
-                    environment.notifyObservers();
+                	Thread.sleep(delay);
+                	MAS.this.runOnce();
                 }
             } catch(InterruptedException e) {
                 e.printStackTrace();
                 System.exit(-1);
             }
         }
+        
+        
     }
 }
