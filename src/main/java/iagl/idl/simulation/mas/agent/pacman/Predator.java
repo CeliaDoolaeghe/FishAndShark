@@ -51,28 +51,28 @@ public class Predator extends PacManAgent {
 			}
 			dijkstra.add(l);
 		}
-		
-		computeDijkstra(dijkstra, environment.getCoordinateOf(agent), new LinkedList<Coordinate>(), 1);
+
+        LinkedList<Coordinate> openSquares = new LinkedList<>();
+        openSquares.add(environment.getCoordinateOf(agent));
+		computeDijkstra(dijkstra, openSquares);
 		return dijkstra;
 	}
 
-	private void computeDijkstra(List<List<Integer>> dijkstra, Coordinate current, List<Coordinate> openSquares, int number) {
-		if(dijkstra.get(current.getY()).get(current.getX()) != 0) {
-			return;
-		}
+	private void computeDijkstra(List<List<Integer>> dijkstra, LinkedList<Coordinate> openSquares) {
+        int number;
+		while(!openSquares.isEmpty()) {
+            Coordinate currentCoordinate = openSquares.pop();
+            number = dijkstra.get(currentCoordinate.getY()).get(currentCoordinate.getX());
+            List<Coordinate> coordinates = environment.neighborsCoordinates(currentCoordinate);
+            for(Coordinate coordinate : coordinates) {
+                if(dijkstra.get(coordinate.getY()).get(coordinate.getX()) == 0 && environment.getAgentAt(coordinate) == null) {
+                    dijkstra.get(coordinate.getY()).set(coordinate.getX(), number + 1);
+                    openSquares.add(coordinate);
+                }
+            }
 
-		List<Coordinate> newOpenSquares = new LinkedList<>(openSquares); 
-		List<Coordinate> coordinates = environment.neighborsCoordinates(current);
-		for(Coordinate coordinate : coordinates) {
-			if(dijkstra.get(coordinate.getY()).get(coordinate.getX()) == 0 && environment.getAgentAt(coordinate) == null) {
-				dijkstra.get(coordinate.getY()).set(coordinate.getX(), new Integer(number));
-				newOpenSquares.add(coordinate);
-			}
-		}
 
-		for(Coordinate c : newOpenSquares) {
-			computeDijkstra(dijkstra, c, newOpenSquares, number + 1);
-		}
+        }
 	}
 
 	@Override
@@ -84,5 +84,4 @@ public class Predator extends PacManAgent {
 	public boolean isEatable() {
 		return false;
 	}
-
 }
