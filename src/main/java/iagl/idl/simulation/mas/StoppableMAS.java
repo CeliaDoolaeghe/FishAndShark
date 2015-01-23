@@ -9,7 +9,6 @@ public class StoppableMAS<T extends StoppableAgent> extends MAS<T> {
 
 	public StoppableMAS(Environment<T> environment, int delay) {
 		super(environment, delay);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
