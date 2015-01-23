@@ -24,6 +24,7 @@ public class StoppableMAS<T extends StoppableAgent> extends MAS<T> {
 			if(!agent.canStopSimulation()) {
 				canStop = false;
 			}
+            i++;
 		}
 		terminated = canStop;
 	}
