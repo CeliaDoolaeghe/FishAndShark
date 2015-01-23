@@ -7,6 +7,10 @@ import java.util.List;
 import iagl.idl.simulation.mas.environment.Coordinate;
 import iagl.idl.simulation.mas.environment.Environment;
 
+/**
+ * An Eatable Agent try to survive against <code>Predator</code>s
+ * Compute dijkstra and try to escape <code>Predator</code>s by moving into the neighbor's square which have the maximum value
+ */
 public class Prey extends PacManAgent {	
 	
 	public Prey(Environment<PacManAgent> environment) {

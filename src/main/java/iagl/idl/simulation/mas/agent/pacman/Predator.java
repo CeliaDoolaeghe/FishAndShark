@@ -8,6 +8,10 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * An Agent which looks for eating <code>Eatable</code> agents of the environments.
+ * Compute dijkstra and try to get closer to an <code>Eatable</code> agent by moving into the neighbor's square which have the minimum value
+ */
 public class Predator extends PacManAgent {
 	
 	public Predator(Environment<PacManAgent> environment) {

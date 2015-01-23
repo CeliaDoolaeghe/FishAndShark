@@ -33,6 +33,11 @@ public class SegregationAgent implements Agent {
         this.color = color;
     }
 
+    /**
+     * Compute the satisfaction of this Agent by comparing its color with its neighbors' one.
+     * An empty square is considering as unsatisfying
+     * @return the percentage of satisfaction
+     */
     public float getSatisfaction() {
         final Map<Coordinate, SegregationAgent> neighbors = environment.getAllNeighbors(this);
         int compatibility = 0;
@@ -49,7 +54,18 @@ public class SegregationAgent implements Agent {
         SegregationAgent.TOLERANCE = tolerance;
     }
 
+    /**
+     * Check if this agent needs to move, i.e. if the satisfaction with his neighbors is less than tolerance
+     * @return true iff the satisfaction with his neighbors is less than tolerance
+     */
+    private boolean needToMove() {
+        return getSatisfaction() < TOLERANCE;
+    }
+
     @Override
+    /**
+     * If this Agent <code>needToMove</code>, find a free square into environment, and then move into this one.
+     */
     public void doIt() {
         if(needToMove()) {
             Coordinate nextMove = environment.findFreeSpace();
@@ -57,14 +73,6 @@ public class SegregationAgent implements Agent {
                 environment.move(this, nextMove);
             }
         }
-    }
-
-    /**
-     * Check if this agent needs to move, i.e. if the satisfaction with his neighbors is less than tolerance
-     * @return true iff the satisfaction with his neighbors is less than tolerance
-     */
-    private boolean needToMove() {
-        return getSatisfaction() < TOLERANCE;
     }
 
     @Override

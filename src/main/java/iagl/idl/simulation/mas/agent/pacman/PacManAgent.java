@@ -1,5 +1,6 @@
 package iagl.idl.simulation.mas.agent.pacman;
 
+import iagl.idl.simulation.mas.agent.Eatable;
 import iagl.idl.simulation.mas.agent.StoppableAgent;
 import iagl.idl.simulation.mas.environment.Coordinate;
 import iagl.idl.simulation.mas.environment.Environment;
@@ -8,7 +9,15 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class PacManAgent implements StoppableAgent {
+/**
+ * Specific Agent for PacMan simulation
+ * @author Célia Cacciatore, Jonathan Geoffroy
+ */
+public abstract class PacManAgent implements StoppableAgent, Eatable {
+
+    /**
+     * Environment where this Agent moves
+     */
 	protected Environment<PacManAgent> environment;
 	
 	public PacManAgent(Environment<PacManAgent> environment) {
@@ -16,8 +25,12 @@ public abstract class PacManAgent implements StoppableAgent {
 		this.environment = environment;
 	}
 
-	public abstract boolean isEatable();
-
+    /**
+     * Compute dijkstra minimum path to eat the provided <code>agent</code>
+     * @param dijkstra will contains the dijkstra computing
+     * @param agent the agent to eat
+     * @return the computed result
+     */
     protected List<List<Integer>> computeDijkstra(List<List<Integer>> dijkstra, PacManAgent agent) {
         List<List<PacManAgent>> board = environment.getBoard();
         for(int i = 0, size = board.size(); i < size; i++) {
@@ -31,9 +44,15 @@ public abstract class PacManAgent implements StoppableAgent {
         LinkedList<Coordinate> openSquares = new LinkedList<>();
         openSquares.add(environment.getCoordinateOf(agent));
         computeDijkstra(dijkstra, openSquares);
+
         return dijkstra;
     }
 
+    /**
+     * Implementation of dijkstra's minimum path computing
+     * @param dijkstra the result
+     * @param openSquares the squares to checks
+     */
     private void computeDijkstra(List<List<Integer>> dijkstra, LinkedList<Coordinate> openSquares) {
         int number;
         while(!openSquares.isEmpty()) {

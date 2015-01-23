@@ -2,6 +2,7 @@ package iagl.idl.simulation;
 
 import iagl.idl.simulation.mas.MAS;
 import iagl.idl.simulation.mas.StoppableMAS;
+import iagl.idl.simulation.mas.agent.PacManMAS;
 import iagl.idl.simulation.mas.agent.pacman.PacManAgent;
 import iagl.idl.simulation.mas.agent.pacman.Predator;
 import iagl.idl.simulation.mas.agent.pacman.Prey;
@@ -29,16 +30,8 @@ public class PacManApp {
 		int delay = Integer.parseInt(args[4]);
 		
 		Environment<PacManAgent> environment = new Environment<>(size);
-        List<PacManAgent> agents = new LinkedList<>();
-        for (int i = 0; i < numberOfPreys; i++) {
-            agents.add(new Prey(environment));
-        }
-        for (int i = 0; i < numberOfPredators; i++) {
-            agents.add(new Predator(environment));
-        }
-        environment.init(agents);
-
-        final MAS<PacManAgent> mas = new StoppableMAS<>(environment, delay);
+        final PacManMAS mas = new PacManMAS(environment, delay);
+        mas.init(numberOfPreys, numberOfPredators, percentageOfObstacles);
 
         JFrame frame = new SimulationFrame("PacMan", mas);
         frame.setVisible(true);
