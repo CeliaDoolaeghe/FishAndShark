@@ -178,7 +178,7 @@ Soit la commande suivante pour exécuter la simulation conseillée:
 
 Attention :
 - avec 1 proie et 1 prédateur, la simulation dure quasi infiniment car la proie fuit de façon optimale. Seuls les obstacles peuvent éventuellement interférer.
-- avec un trop grand pourcentage d'obstacles, il y a un risque d'obtenir une proie ou un prédateur coincé dans un carré d'obtacles.
+- avec un trop grand pourcentage d'obstacles, il y a un risque d'obtenir une proie ou un prédateur coincé dans un carré d'obtacles. La simulation ne peut se terminer que si toutes les proies sont mangées, donc si l'une d'elle est inaccessible, la simulation est infinie.
 - la pause ne marche pas dans cette simulation.
   
 ### Interface Graphique  ###
