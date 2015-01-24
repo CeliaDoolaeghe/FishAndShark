@@ -11,8 +11,8 @@ import iagl.idl.simulation.mas.environment.Environment;
  * An Eatable Agent try to survive against <code>Predator</code>s
  * Compute dijkstra and try to escape <code>Predator</code>s by moving into the neighbor's square which have the maximum value
  */
-public class Prey extends PacManAgent {	
-	
+public class Prey extends PacManAgent {
+
 	public Prey(Environment<PacManAgent> environment) {
 		super(environment);
 	}
@@ -26,6 +26,7 @@ public class Prey extends PacManAgent {
         List<Coordinate> neighborsCoordinates = environment.neighborsCoordinates(environment.getCoordinateOf(this));
         for(PacManAgent agent : agents) {
             if(!agent.isEatable()) {
+            	initializeDijkstra(dijkstra);
                 computeDijkstra(dijkstra, agent);
                 for(Coordinate c : neighborsCoordinates) {
                     if(dijkstra.get(c.getY()).get(c.getX()) != 0 && dijkstra.get(c.getY()).get(c.getX()) > nextMoveNumber) {

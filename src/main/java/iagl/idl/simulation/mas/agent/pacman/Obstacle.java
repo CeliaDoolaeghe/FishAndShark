@@ -5,7 +5,7 @@ import iagl.idl.simulation.mas.environment.Environment;
 import java.awt.*;
 
 /**
- * Created by jonathan on 23/01/15.
+ * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class Obstacle extends PacManAgent {
 

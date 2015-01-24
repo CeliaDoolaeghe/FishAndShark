@@ -5,19 +5,18 @@ import iagl.idl.simulation.mas.environment.Environment;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
- * An Agent which looks for eating <code>Eatable</code> agents of the environments.
- * Compute dijkstra and try to get closer to an <code>Eatable</code> agent by moving into the neighbor's square which have the minimum value
+ * An Agent whose goal is to catch <code>Eatable</code> agents in the environment.<br/>
+ * Compute dijkstra and try to get closer to an <code>Eatable</code> agent by moving into the neighbor square which has the minimum value.
  */
 public class Predator extends PacManAgent {
-	
+
 	public Predator(Environment<PacManAgent> environment) {
 		super(environment);
 	}
-	
+
 	@Override
 	public boolean canStopSimulation() {
 		return true;
@@ -34,6 +33,7 @@ public class Predator extends PacManAgent {
         // move closer to the closest eatable Agent by computing Dijkstra for each of them
 		for(PacManAgent agent : agents) {
 			if(agent.isEatable()) {
+				initializeDijkstra(dijkstra);
 				computeDijkstra(dijkstra, agent);
 				for(Coordinate c : neighborsCoordinates) {
 					if(dijkstra.get(c.getY()).get(c.getX()) != 0 && dijkstra.get(c.getY()).get(c.getX()) < nextMoveNumber) {

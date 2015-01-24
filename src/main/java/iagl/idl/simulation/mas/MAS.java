@@ -57,12 +57,12 @@ public class MAS<T extends Agent> {
          environment.clearDead();
          environment.notifyObservers();
     }
-    
+
     public long getScheduling() {
         return scheduling;
     }
 
-    public void setTerminated(boolean terminated) {
+    public synchronized void setTerminated(boolean terminated) {
         this.terminated = terminated;
     }
 
@@ -88,7 +88,7 @@ public class MAS<T extends Agent> {
                 System.exit(-1);
             }
         }
-        
-        
+
+
     }
 }
