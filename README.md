@@ -8,6 +8,7 @@ Jonathan GEOFFROY
 Deux systèmes multi-agents sont présentés dans ce projet dans le cadre du cours Intelligence Des Logiciels (IDL), Master 2 Informatique, spécialité IAGL, Université Lille1 :
 * FishAndSharks : Implémentation de [Wa-Tor](https://en.wikipedia.org/wiki/Wa-Tor) 
 * Segregation : Implémentation du [Modèle de Ségrégation de Schelling](http://www.gemass.fr/dphan/complexe/schellingfr.html)
+* PacMan : Implémentation d'une poursuite entre proies et prédateurs utilisant l'[algorithme de Dijkstra](https://fr.wikipedia.org/wiki/Algorithme_de_Dijkstra)
 
 ------------------------------------
 # Système multi-agents #
@@ -23,6 +24,9 @@ De plus, cette classe possède plusieurs **helpers** afin d'informer les *Agent*
 
 ## MAS: Système Multi-Agent ##
 Afin d'obtenir une simulation qui soit **Multi-Agent**, la classe *MAS.java* récupère tous les *Agent*s contenus dans l'*Environment* afin de leur permettre de jouer leurs actions.  
+
+## FoodChain : Chaîne alimentaire ##
+Les agents se différencient selon leur capacité à manger ou être mangé par les autres agents.
 
 ------------------------------------
 # FishAndSharks #
@@ -145,3 +149,56 @@ Cette fois, le seuil de tolérance est de 50%, mais les agents se déplacent et 
 
 ### SegregationAgent ###
 L'agent se déplace si son niveau de satisfaction est inférieur à son seuil de tolérance. Le niveau de satisfaction est le nombre de voisins ayant la même couleur que lui sur le nombre total de voisins possibles (les agents sur le bord de la map ne sont pas désavantagés).
+
+------------------------------------
+# PacMan #
+
+## Exécution ##
+Afin d'exécuter facilement l'application, un script maven est fourni:
+
+    git clone https://github.com/CeliaDoolaeghe/MultiAgentSystems.git
+    cd MultiAgentSystems
+    mvn install
+    mvn exec:java -Ppacman -Dexec.args="50 3 3 5 50"
+  
+### Arguments ###
+Les différents paramètres de la simulation doivent être donnés en tant que paramètres de la commande maven:
+
+|                   Paramètre                  | Valeur Conseillée |
+|:--------------------------------------------:|:-----------------:|
+| taille de la map                             | 50                |
+| nombre de proies                             | 3                 |
+| nombre de prédateurs                         | 3                 |
+| quantité d'obstacles (en pourcentage)        | 5                 |
+| délai d'attente entre 2 tours                | 50                |
+
+Soit la commande suivante pour exécuter la simulation conseillée:
+
+    mvn exec:java -Ppacman -Dexec.args="50 3 3 5 50"
+
+Attention :
+- avec 1 proie et 1 prédateur, la simulation dure quasi infiniment car la proie fuit de façon optimale. Seuls les obstacles peuvent éventuellement interférer.
+- avec un trop grand pourcentage d'obstacles, il y a un risque d'obtenir une proie ou un prédateur coincé dans un carré d'obtacles.
+- la pause ne marche pas dans cette simulation.
+  
+### Interface Graphique  ###
+L'interface graphique fournie présente l'environnement sous forme de ronds de couleurs:
+
+ * vert pour une proie,
+ * jaune pour un prédateur,
+ * noir pour un obstacle,
+ * gris clair pour une case vide.
+
+## Structure du projet ##
+
+### PacManAgent ###
+Cette classe abstraite contient le calcul des grilles de l'algorithme de Dijkstra.
+
+### Predator : Prédateur ###
+Cet agent se sert de l'algorithme de Dijkstra pour trouver le plus court chemin vers la Proie la plus proche. Une fois à côté d'une proie, il la mange.
+
+### Prey : Proie ###
+Cet agent se sert de l'algorithme de Dijkstra pour s'éloigner du Prédateur le plus proche. S'il est rattrapé par un Prédateur, il est mangé et disparaît.
+
+### Obstacle ###
+Cet agent reste immobile et gêne le déplacement des autres agents.
