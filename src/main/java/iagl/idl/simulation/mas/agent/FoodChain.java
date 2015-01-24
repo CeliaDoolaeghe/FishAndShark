@@ -1,6 +1,7 @@
 package iagl.idl.simulation.mas.agent;
 
 /**
+ * Agents in the food chain can either eat other agents either be eaten by them.
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public interface FoodChain {

@@ -8,8 +8,8 @@ import iagl.idl.simulation.mas.environment.Coordinate;
 import iagl.idl.simulation.mas.environment.Environment;
 
 /**
- * An Eatable Agent try to survive against <code>Predator</code>s
- * Compute dijkstra and try to escape <code>Predator</code>s by moving into the neighbor's square which have the maximum value
+ * An Eatable Agent that tries to survive against <code>Predator</code>s.<br/>
+ * Compute dijkstra and try to escape <code>Predator</code>s by moving into the neighbor square which has the maximum value.
  */
 public class Prey extends PacManAgent {
 
@@ -39,7 +39,6 @@ public class Prey extends PacManAgent {
         if(nextMove != null) {
             environment.move(this, nextMove);
         }
-        System.out.println(nextMoveNumber);
 	}
 
 	@Override
@@ -61,5 +60,4 @@ public class Prey extends PacManAgent {
 	public boolean canEat() {
 		return false;
 	}
-
 }

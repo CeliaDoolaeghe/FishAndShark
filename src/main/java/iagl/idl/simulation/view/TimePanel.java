@@ -11,7 +11,9 @@ import java.awt.event.WindowEvent;
  *  @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class TimePanel extends JPanel {
-    private final MAS mas;
+
+	private static final long serialVersionUID = 1L;
+	private final MAS mas;
 
     public TimePanel(MAS mas) {
         super();

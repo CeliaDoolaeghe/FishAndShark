@@ -27,7 +27,7 @@ public abstract class PacManAgent implements StoppableAgent, FoodChain {
 
 	/**
 	 * Initializes an empty dijkstra grid.
-	 * @param dijkstra the grid to initialize
+	 * @param dijkstra the grid to empty
 	 */
 	protected void initializeDijkstra(List<List<Integer>> dijkstra) {
 		dijkstra.clear();

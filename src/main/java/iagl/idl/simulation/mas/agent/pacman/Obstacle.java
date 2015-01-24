@@ -5,6 +5,7 @@ import iagl.idl.simulation.mas.environment.Environment;
 import java.awt.*;
 
 /**
+ * An unmoving agent that obstructs the way for other agents.
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class Obstacle extends PacManAgent {

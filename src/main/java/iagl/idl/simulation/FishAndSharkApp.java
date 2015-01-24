@@ -1,6 +1,5 @@
 package iagl.idl.simulation;
 
-import iagl.idl.simulation.graph.CSVLogger;
 import iagl.idl.simulation.graph.PopulationLogger;
 import iagl.idl.simulation.graph.TimeLogger;
 import iagl.idl.simulation.mas.MAS;
@@ -10,12 +9,13 @@ import iagl.idl.simulation.mas.agent.fishandsharks.Shark;
 import iagl.idl.simulation.mas.environment.Environment;
 import iagl.idl.simulation.view.SimulationFrame;
 
-import javax.swing.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.swing.JFrame;
 
 /**
  * @author Célia Cacciatore, Jonathan Geoffroy
@@ -52,8 +52,8 @@ public class FishAndSharkApp {
 
         // Configure Loggers
 
-        new TimeLogger(mas);
-        new PopulationLogger(mas);
+        new TimeLogger<FishAndSharkAgent>(mas);
+        new PopulationLogger<FishAndSharkAgent>(mas);
 
         JFrame frame = new SimulationFrame("Fish and Shark", mas);
         frame.setVisible(true);

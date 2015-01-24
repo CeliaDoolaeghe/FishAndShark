@@ -8,8 +8,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * An Agent whose goal is to catch <code>Eatable</code> agents in the environment.<br/>
- * Compute dijkstra and try to get closer to an <code>Eatable</code> agent by moving into the neighbor square which has the minimum value.
+ * An Agent whose goal is to catch <code>Prey</code>s in the environment.<br/>
+ * Compute dijkstra and try to get closer to a <code>Prey</code> by moving into the neighbor square which has the minimum value.
  */
 public class Predator extends PacManAgent {
 
