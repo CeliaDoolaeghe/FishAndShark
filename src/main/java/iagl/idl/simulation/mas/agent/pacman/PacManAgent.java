@@ -1,6 +1,6 @@
 package iagl.idl.simulation.mas.agent.pacman;
 
-import iagl.idl.simulation.mas.agent.Eatable;
+import iagl.idl.simulation.mas.agent.FoodChain;
 import iagl.idl.simulation.mas.agent.StoppableAgent;
 import iagl.idl.simulation.mas.environment.Coordinate;
 import iagl.idl.simulation.mas.environment.Environment;
@@ -13,7 +13,7 @@ import java.util.List;
  * Specific Agent for PacMan simulation.
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public abstract class PacManAgent implements StoppableAgent, Eatable {
+public abstract class PacManAgent implements StoppableAgent, FoodChain {
 
     /**
      * Environment where this Agent moves

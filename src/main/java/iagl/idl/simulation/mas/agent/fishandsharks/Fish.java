@@ -58,4 +58,9 @@ public class Fish extends FishAndSharkAgent {
     public static void setGestationDuration(int gestationDuration) {
         GESTATION_DURATION = gestationDuration;
     }
+
+	@Override
+	public boolean canEat() {
+		return false;
+	}
 }

@@ -30,4 +30,9 @@ public class Obstacle extends PacManAgent {
     public Color getColor() {
         return Color.BLACK;
     }
+
+	@Override
+	public boolean canEat() {
+		return false;
+	}
 }

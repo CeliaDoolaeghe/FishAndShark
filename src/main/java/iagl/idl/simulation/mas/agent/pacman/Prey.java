@@ -25,7 +25,7 @@ public class Prey extends PacManAgent {
         int nextMoveNumber = Integer.MIN_VALUE;
         List<Coordinate> neighborsCoordinates = environment.neighborsCoordinates(environment.getCoordinateOf(this));
         for(PacManAgent agent : agents) {
-            if(!agent.isEatable()) {
+            if(agent.canEat()) {
             	initializeDijkstra(dijkstra);
                 computeDijkstra(dijkstra, agent);
                 for(Coordinate c : neighborsCoordinates) {
@@ -39,6 +39,7 @@ public class Prey extends PacManAgent {
         if(nextMove != null) {
             environment.move(this, nextMove);
         }
+        System.out.println(nextMoveNumber);
 	}
 
 	@Override
@@ -54,6 +55,11 @@ public class Prey extends PacManAgent {
 	@Override
 	public boolean isEatable() {
 		return true;
+	}
+
+	@Override
+	public boolean canEat() {
+		return false;
 	}
 
 }

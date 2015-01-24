@@ -1,7 +1,7 @@
 package iagl.idl.simulation.mas.agent.fishandsharks;
 
 import iagl.idl.simulation.mas.agent.Agent;
-import iagl.idl.simulation.mas.agent.Eatable;
+import iagl.idl.simulation.mas.agent.FoodChain;
 import iagl.idl.simulation.mas.environment.Coordinate;
 import iagl.idl.simulation.mas.environment.Environment;
 
@@ -11,7 +11,7 @@ import java.awt.*;
  * Special Agent for Wa-Tor simulation
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
-public abstract class FishAndSharkAgent implements Agent, Eatable {
+public abstract class FishAndSharkAgent implements Agent, FoodChain {
     /**
      * Environment where the Fish moves
      */

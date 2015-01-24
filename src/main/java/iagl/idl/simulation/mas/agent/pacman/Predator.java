@@ -65,4 +65,9 @@ public class Predator extends PacManAgent {
 	public boolean isEatable() {
 		return false;
 	}
+
+	@Override
+	public boolean canEat() {
+		return true;
+	}
 }

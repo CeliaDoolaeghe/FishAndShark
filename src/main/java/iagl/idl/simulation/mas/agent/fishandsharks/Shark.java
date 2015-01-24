@@ -111,4 +111,9 @@ public class Shark extends FishAndSharkAgent {
         Shark.STARVATION_DURATION = starvationDuration;
     }
 
+	@Override
+	public boolean canEat() {
+		return true;
+	}
+
 }
