@@ -29,6 +29,22 @@ Afin d'obtenir une simulation qui soit **Multi-Agent**, la classe *MAS.java* ré
 Les agents se différencient selon leur capacité à manger ou être mangé par les autres agents.
 
 ------------------------------------
+# Loggers et Graphiques
+
+Afin de pouvoir loggué les statistiques facilements, puis de créer les graphiques utiles à la documentation de ce projet, nous utilisons les technologies [Log4J2](http://logging.apache.org/log4j/2.x/) et [Gnuplot](http://www.gnuplot.info/).  
+
+## Loggers ##
+Log4J2 est d'abord initialisé par le fichier de configuration *main/src/resources/log4j2.xml*, puis chaque simulation lance les Loggers dont il a besoin:
+
+* *TimeLogger* et *PopulationLogger* pour la simulation **Wa-Tor**,
+* *SatisfactionLogger* pour la simulation **Ségrégation**
+ 
+Chaque logger crée un fichier séparé dont les données sont ensuite exploitées par Gnuplot!
+* *simulationPopulation.plot* interprète les données de *PopulationLogger*,
+* *simulationTime.plot* interprète les données de *TimeLogger*,
+* *simulationSatisfaction.plot* interprète les données de *SatisfactionLogger*
+ 
+
 # FishAndSharks #
 
 ## Exécution ##
@@ -179,7 +195,6 @@ Soit la commande suivante pour exécuter la simulation conseillée:
 Attention :
 - avec 1 proie et 1 prédateur, la simulation dure quasi infiniment car la proie fuit de façon optimale. Seuls les obstacles peuvent éventuellement interférer.
 - avec un trop grand pourcentage d'obstacles, il y a un risque d'obtenir une proie ou un prédateur coincé dans un carré d'obtacles. La simulation ne peut se terminer que si toutes les proies sont mangées, donc si l'une d'elle est inaccessible, la simulation est infinie.
-- la pause ne marche pas dans cette simulation.
   
 ### Interface Graphique  ###
 L'interface graphique fournie présente l'environnement sous forme de ronds de couleurs:
@@ -201,4 +216,4 @@ Cet agent se sert de l'algorithme de Dijkstra pour trouver le plus court chemin 
 Cet agent se sert de l'algorithme de Dijkstra pour s'éloigner du Prédateur le plus proche. S'il est rattrapé par un Prédateur, il est mangé et disparaît.
 
 ### Obstacle ###
-Cet agent reste immobile et gêne le déplacement des autres agents.
+Cet agent reste immobile et gêne le déplacement des autres agents, en empêchant le calcul de l'algorithme de Dikjstra sur la case où est placée l'obstacle.
