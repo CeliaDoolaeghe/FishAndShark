@@ -1,4 +1,4 @@
-package iagl.idl.simulation.mas.agent;
+package iagl.idl.simulation.mas;
 
 import iagl.idl.simulation.mas.StoppableMAS;
 import iagl.idl.simulation.mas.agent.pacman.Obstacle;

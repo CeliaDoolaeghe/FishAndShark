@@ -1,6 +1,6 @@
 package iagl.idl.simulation;
 
-import iagl.idl.simulation.mas.agent.PacManMAS;
+import iagl.idl.simulation.mas.PacManMAS;
 import iagl.idl.simulation.mas.agent.pacman.PacManAgent;
 import iagl.idl.simulation.mas.environment.Environment;
 import iagl.idl.simulation.view.SimulationFrame;
