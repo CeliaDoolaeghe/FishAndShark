@@ -33,18 +33,16 @@ Les agents se différencient selon leur capacité à manger ou être mangé par 
 
 Afin de pouvoir loggué les statistiques facilements, puis de créer les graphiques utiles à la documentation de ce projet, nous utilisons les technologies [Log4J2](http://logging.apache.org/log4j/2.x/) et [Gnuplot](http://www.gnuplot.info/).  
 
-## Loggers ##
 Log4J2 est d'abord initialisé par le fichier de configuration *main/src/resources/log4j2.xml*, puis chaque simulation lance les Loggers dont il a besoin:
 
 * *TimeLogger* et *PopulationLogger* pour la simulation **Wa-Tor**,
 * *SatisfactionLogger* pour la simulation **Ségrégation**
  
-Chaque logger crée un fichier séparé dont les données sont ensuite exploitées par Gnuplot!
+Chaque logger crée un fichier séparé dont les données sont ensuite exploitées par Gnuplot:
 * *simulationPopulation.plot* interprète les données de *PopulationLogger*,
 * *simulationTime.plot* interprète les données de *TimeLogger*,
 * *simulationSatisfaction.plot* interprète les données de *SatisfactionLogger*
  
-
 # FishAndSharks #
 
 ## Exécution ##
