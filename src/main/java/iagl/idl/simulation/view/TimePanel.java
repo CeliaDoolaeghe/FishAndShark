@@ -8,6 +8,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 
 /**
+ * Display a "start/pause" button which can pause the simulation,
+ * and a "stop" button which can stop the simulation and exit the software.
+ *
  *  @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class TimePanel extends JPanel {

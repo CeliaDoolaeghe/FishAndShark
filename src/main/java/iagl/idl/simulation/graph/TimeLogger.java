@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 
 
 /**
+ * Specific Log4J logger which counts the number of Fish & Sharks for each time in environment, and then log it into a file.
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class TimeLogger<T extends Agent> extends CSVLogger<T> {

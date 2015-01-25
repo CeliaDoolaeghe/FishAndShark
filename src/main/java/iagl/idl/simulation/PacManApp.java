@@ -10,6 +10,10 @@ import java.awt.event.WindowEvent;
 
 import javax.swing.JFrame;
 
+/**
+ * Run the PacMan Simulation
+ * @author Célia Cacciatore, Jonathan Geoffroy
+ */
 public class PacManApp {
 
 	public static void main(String[] args) throws InterruptedException {

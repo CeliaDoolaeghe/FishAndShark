@@ -6,6 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
+ * The Frame of the simulation<br/>
+ * Contain a BoardPanel, a StatusPanel and a TimePanel
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class SimulationFrame extends JFrame {

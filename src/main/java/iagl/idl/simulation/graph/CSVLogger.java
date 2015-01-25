@@ -13,6 +13,8 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * Let loggers which extends this class observes the environment.
+ *
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public abstract class CSVLogger<T extends Agent> implements Observer {

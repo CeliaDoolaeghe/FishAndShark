@@ -35,6 +35,7 @@ public class BoardPanel extends JPanel implements Observer {
         int squareHeight = getHeight() / height;
         int squareWidth = getWidth() / width;
 
+        // Display environment by drawing an oval of the right color, depending on the agent inside the square
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (board.get(y).get(x) != null) {

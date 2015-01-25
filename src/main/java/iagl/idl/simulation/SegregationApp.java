@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
+ * Run the Segregation Simulation
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class SegregationApp {

@@ -9,7 +9,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 /**
- * Created by jonathan on 18/01/15.
+ * Specific Log4J logger which counts the average of satisfaction and then log it into a file.
  */
 public class SatisfactionLogger extends CSVLogger<SegregationAgent> {
 

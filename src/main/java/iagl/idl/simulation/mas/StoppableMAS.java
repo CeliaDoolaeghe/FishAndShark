@@ -5,6 +5,10 @@ import iagl.idl.simulation.mas.environment.Environment;
 
 import java.util.List;
 
+/**
+ * A Specific MAS which automatically ends if code>canStopSimulation = true</code> for each agent
+ * @param <T>
+ */
 public class StoppableMAS<T extends StoppableAgent> extends MAS<T> {
 
 	public StoppableMAS(Environment<T> environment, int delay) {

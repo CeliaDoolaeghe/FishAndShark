@@ -18,6 +18,7 @@ import java.util.List;
 import javax.swing.JFrame;
 
 /**
+ * Run the Wa-Tor Simulation
  * @author Célia Cacciatore, Jonathan Geoffroy
  */
 public class FishAndSharkApp {

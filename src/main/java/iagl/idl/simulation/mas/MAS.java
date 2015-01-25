@@ -46,6 +46,9 @@ public class MAS<T extends Agent> {
         masRunner.start();
     }
 
+    /**
+     * Run a single chronon of simulation by calling <code>doIt</code> for each agent
+     */
     public void runOnce() {
          List<T> agents = environment.getAllAgents();
          for (T agent : agents) {
@@ -74,6 +77,9 @@ public class MAS<T extends Agent> {
         return terminated;
     }
 
+    /**
+     * A thread which runs the simulation while <code>!terminated</code>
+     */
     class MASRunner implements Runnable {
 
         @Override
